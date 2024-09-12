@@ -1,0 +1,16 @@
+<div class="manage-membership-div margin-top-200">
+
+  <h1 class="text-white fw-bold text-center">{{hitext}} {{memberObj.firstName}}</h1>
+  <h4 class="text-center text-white  mt-3">{{headermessage}}</h4>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
+    <div class="row justify-content-center">
+      <div class="d-flex gap-4 col-12  justify-content-center mt-4">
+        <!-- <button type="button" class="btn btn-div bg-green rounded-1 p-2 text-white fw-normal text-uppercase shadow-color" (click)="commonService.setModuleAndRedirectToPerticularSource(commonService.commonTypeObj.member.manageMembershipObj.updatePersonalInfo)" >
+          {{ UPersonalItext }}</button> -->
+        <button type="button" class="btn btn-div bg-green rounded-1 p-2 text-white fw-normal text-uppercase shadow-color"
+          (click)="commonService.setModuleAndRedirectToPerticularSource(commonService.commonTypeObj.member.manageMembershipObj.updatePaymentInfo)">{{
+          UPaymentItext }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<ngx-loading-bar color="#42603C" height="5px" [includeSpinner]="true"></ngx-loading-bar> <!-- ref="http" -->
+
+<div *ngIf="!isLogout">
+  <app-header class="app-header-section" id="app-header-section header-section"></app-header>
+  <div class="main-section">
+    <div class="slideShow" >
+      <div *ngIf="SlideNo == SlideNo" class="slide " [ngClass]="SlideNo"></div>
+      <div *ngIf="SlideNo != SlideNo" class="slide" [ngClass]="SlideNo"></div>
+
+      <div *ngIf="BannerClass == BannerClass" id="bannerSectionHeader" class="banner-section" [ngClass]="BannerClass"> 
+        <div class="container bodyHeight" id="bodyHeight">
+          <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 m-0 mian-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <app-footer *ngIf="isFooter"></app-footer>
+      </div>
+      <div *ngIf="BannerClass != BannerClass" id="bannerSectionFooter" class="banner-section">
+        <div class="container bodyHeight" id="bodyHeight">
+          <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 m-0 mian-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLogout">
+  <app-logout></app-logout>
+</div>
+

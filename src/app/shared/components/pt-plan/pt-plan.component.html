@@ -1,0 +1,88 @@
+<div class="membership-ptplan-main-section pt-div margin-bottom-200 margin-top-200"
+  *ngIf="PTPlanTabOrderListDetail.length > 0">
+  <h1 class="text-white text-center mt-5 fw-bold ">{{headertext}}</h1>
+  <div class="text-white text-center mt-4 fs-4 fw-normal">{{selectPlantext}}</div>
+  <div class="text-white text-center fs-4 fw-normal"><i>{{subPlanText}}</i></div>
+
+  <div class="container mt-5">
+    <div>
+      <div [ngClass]="{'d-flex gap-3 justify-content-center flex-wrap': PTPlanTabOrderAndName.length <= 2}"
+        class="PTPlan">
+        <div class="mb-5 PTTab" [ngClass]="{'col-lg-6 col-md-6 col-sm-6 col-12': PTPlanTabOrderAndName.length <= 2}"
+          ng-show="AllPTPlansList.length > 0">
+          <tabset type="pills" class="nav-fill col-sm-12 mt-5 fw-bold shadow-color"
+            [ngClass]="{'no-wrap': PTPlanTabOrderAndName.length > 3}">
+            <tab index="$index + 1" *ngFor="let tab of PTPlanTabOrderAndName" [heading]="tab.tabName" [id]="tab.ID"
+              (selectTab)="getPlanDetail(tab.tabOrder, tab.tabName)">
+            </tab>
+          </tabset>
+        </div>
+      </div>
+
+      <div>
+        <!-- card-1 -->
+        <div class="row d-flex justify-content-center gap-3 mt-5">
+          <div *ngFor="let plan of PTPlanTabOrderListDetail, index as i"
+            class="col-lg-6 col-md-6 col-sm-12 col-xs-12 top-card-body-pt rounded-3 justify-content-center p-4 shadow-color">
+            <div class="text-center text-yellow fs6 extrabold fr plan-height">{{plan.recurringServicePlanName}}</div>
+           <div class="text-center mt-2">
+            <a *ngIf="IsPriceShow == 1" class="a-text text-white cursor-pointer showdetail {{plan.HideShowLink}}"
+              (click)="ShowtoggleFilter(i, plan.tabName,plan.SRowNo)">
+              Show Details&nbsp;<i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </a></div>
+            <div class="height-div">
+              <div class="d-flex justify-content-center align-items-center">
+                
+                  <div class="text-white d-flex ">
+                    <div class="fs-3 mt-4 mtp-4x extrabold fr text-shadow "><span class="{{plan.ClassName}}"> {{dollarSign}}</span></div>
+                    <div class="price-1 extrabold fr text-shadow "><span class="{{plan.ClassName}}"> {{plan.totalInvoicePricisionValue}}</span></div>
+                  </div>
+               
+                <div class="{{plan.ClassName}}">
+                <div class="d-flex flex-column justify-content-end">
+                  <div class="text-white extrabold fs-3 fr text-shadow ">.{{plan.totalInvoiceScaleValue}}</div>
+                  <div class="text-white tax-width tax-text text-shadow">{{planValueText}}</div>
+                </div></div>
+              </div>
+              <div class="d-flex justify-content-center gap-3">
+                <div class="d-flex gap-1">
+                  <div class="sub-font-size text-white fw-bolder fr  {{plan.ClassName}}">$</div>
+                  <div class="fs-5 text-white fw-bolder fr  {{plan.ClassName}}">{{plan.unitPrice}}</div>
+                  <div class="fs-5 text-white fw-bolder fr  {{plan.ClassName}}">{{sessionText}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <a class="a-text text-white  cursor-pointer hideDetail  {{plan.HideLink}}"
+                (click)="HidetoggleFilter(i, plan.tabName, plan.SRowNo)">
+                Hide Details&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="d-flex justify-content-center mt-2 mb-2">
+              <button type="button" class="btn buy-btn fw-bolder fs-5"
+                (click)="PTPlanSelection(plan ,plan.tabName, checkPreviousPTPlan)">{{buyNowbtn}}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="skip-plan mt-5 text-center" *ngIf="IsShowPTPlanSkipButton">
+          <button class="btn w-25 rounded-2 text-white bg-green p-2 fs-5 shadow-color" (click)="SkipPTPlanSelection()">
+            {{skipbtn}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <ng-template #checkPreviousPTPlan>
+    <div class="modal-header align-items-start gap-1">
+      <p class="m-0">{{NMSText}}
+      </p>
+      <button type="button" class="btn-close shadow-none" aria-label="Close" (click)="closeModalPopup()"></button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success arugula-bgcolor text-white" (click)="closeModalPopup()">Ok</button>
+    </div>
+  </ng-template>

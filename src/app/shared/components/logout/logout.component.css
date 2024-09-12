@@ -1,0 +1,15 @@
+.logout-section .logo-img {
+    width: 250px;
+  }
+  
+  .logout-section .login-icon i {
+    font-size: 7em;
+  }
+  
+  .logout-section .icon-clr:hover {
+    color: var(--arugula-color);
+  }
+  
+  .logout-section .title-clr:hover {
+    color: var(--charcol-color);
+  }

@@ -1,0 +1,31 @@
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+.bg-form .form-control{
+  padding: 1rem 0.8rem  !important;
+  font-size: 1.1rem !important;
+}
+.dropdown-w .form-control{
+  padding: .375rem .75rem !important;
+}
+.dropdown-btn, .dropdown-btn:hover, .dropdown-btn.show {
+  height: 60px !important;
+}
+
+.mt-height{
+  height: 200px;
+}
+
+::placeholder {
+  color: #aaa9a9 ;
+  font-size: 18px ;
+}
+
+.dropdown-placeholder-color {
+  color: #aaa9a9 !important;
+  font-size: 18px;
+  font-weight:unset !important;
+}

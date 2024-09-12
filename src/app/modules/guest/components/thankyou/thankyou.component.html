@@ -1,0 +1,28 @@
+<div class="search-guest-member-page margin-top-200" *ngIf="join">
+    <h1 class="mt-5 text-white text-center">{{headingName}}</h1>
+    <h3 class="mt-4 text-center text-white">{{thankyouText}}</h3>
+    <h3 class="mt-2 text-white text-center">{{headingType}} </h3>
+    <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+        <button type="button" class="btn btn-success w-100 text-uppercase bg-green text-white" (click)="redirectToRefer()">
+          REFER A FRIEND
+        </button>
+      </div>
+
+      <div class="text-center mt-3">
+        <a class="cursor-pointer text-white text-relish text-decoration text-center"
+        (click)="redirectToHome()">
+        HOME
+      </a>
+      </div>
+  </div>
+
+  <div class="search-guest-member-page margin-top-200" *ngIf="!join">
+    <h1 class="mt-5 text-white text-center">{{headingName}}</h1>
+    <h3 class="mt-4 text-center text-white">{{thankyouText}}</h3>
+    <h3 class="mt-2 text-white text-center">{{headingType}} </h3>
+    <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+      <button type="button" class="btn btn-success w-100 text-uppercase bg-green text-white" (click)="redirectToHome()">
+        {{homebtn}} 
+      </button>
+      </div>
+  </div>

@@ -1,0 +1,499 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "../node_modules/ngx-toastr/toastr.css";
+
+
+@font-face {
+  font-family: 'Rubik-Black';
+  src: url('/assets/font/Rubik/Rubik-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Bold';
+  src: url('/assets/font/Rubik/Rubik-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-ExtraBold';
+  src: url('/assets/font/Rubik/Rubik-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Italic';
+  src: url('/assets/font/Rubik/Rubik-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Medium';
+  src: url('/assets/font/Rubik/Rubik-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Regular';
+  src: url('/assets/font/Rubik/Rubik-Regular.ttf') format('truetype');
+}
+
+:root {
+  --text-white: #FFFFFF;
+  --dark-charcol-color: #272727;
+  --arugula-color: #42603C;
+  --relish-color: #B3CBAA;
+  --light-grey-color: #ECECEC;
+  --green-color: #1C7A44;
+  --placeholder-color: #6C757D;
+  --error-color: #dc3545;
+}
+
+/* #region Loading bar and spinner */
+.ngx-spinner .ngx-spinner-icon {
+  border: none !important;
+}
+
+.ngx-spinner {
+  position: fixed;
+  z-index: 999999;
+  top: 0 !important;
+  right: 0;
+  bottom: 0;
+  left: 0 !important;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-size: 100px !important;
+  background: url(./assets/images/youfit-black-circle-logo.svg)50% 50% no-repeat rgba(26, 17, 17, 0.21);
+  transform-origin: center;
+  animation: beat 0.5s infinite alternate;
+  pointer-events: auto;
+}
+
+@keyframes beat {
+  to {
+    transform: scale(1.3);
+  }
+}
+
+/* #endregion Loading bar and spinner */
+
+/*#region Common CSS */
+html,
+body {
+  color: #272727 !important;
+  font-family: Rubik-Medium !important;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  width: 100%;
+  height: calc(100vh - 87px - 107px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.banner {
+  width: 100%;
+  background: #3131316e;
+  /* #3636364f; */
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.banner-signature {
+  width: 100%;
+  background: #ececec !important;
+  /* #3636364f; */
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.banner-staff{
+  background: #FFFFFF !important;
+}
+
+
+.welcome {
+  background-image: url(./assets/images/slides/welcome.jpg);
+}
+
+.guestthankyou {
+  background-image: url(./assets/images/slides/guest-thankyou.jpg);
+}
+
+.bgcolor {
+  background-color: #ffff
+}
+
+.bgstaffcolor{
+  background-color: #ffff
+}
+
+.memberthankyou {
+  background-image: url(./assets/images/slides/member-thankyou.jpg);
+}
+
+.peronalTraining {
+  background-image: url(./assets/images/slides/PeronalTraining.jpg);
+}
+
+.guestcheckIn {
+  background-image: url(./assets/images/slides/guest-checkIn.jpg);
+}
+
+.member {
+  background-image: url(./assets/images/slides/member.jpg);
+}
+
+.prospect{
+  background-image: url(./assets/images/slides/prospect.jpg);
+}
+
+.padding-15 {
+  padding: 15px !important;
+}
+
+.padding-10 {
+  padding: 10px !important;
+}
+
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+
+.padding-bottom-5 {
+  padding-bottom: 5px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-nodrop {
+  cursor: no-drop;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.margin-top-200{
+  margin-top: 170px;
+}
+
+.margin-bottom-200 {
+  margin-bottom: 150px;
+}
+
+.margin-top-100{
+  margin-top: 100px;;
+}
+
+/*#endregion Common CSS */
+
+/* #region Drop Down CSS */
+.dropdown-btn,
+.dropdown-btn:hover,
+.dropdown-btn.show {
+  border-color: var(--green-color);
+  height: 50px;
+}
+
+.dropdown-btn:focus {
+  border-color: var(--relish-color);
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.8), 0 0 8px rgba(66, 96, 60, 0.9);
+}
+
+.dropdown-btn:nth-child(2) {
+  border-left-color: var(--relish-color) !important;
+}
+
+.dropdown-btn:active,
+.dropdown-btn.show,
+.dropdown-btn-menu {
+  border-color: var(--relish-color) !important;
+  box-shadow: 0px 0px 5px rgba(179, 203, 170, 0.9);
+}
+
+.dropdown-btn-menu .dropdown-item:hover {
+  background-color: var(--relish-color) !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+  background-color: var(--relish-color) ;
+}
+
+.dropdown-btn.dropdown-toggle::after {
+  float: right;
+  margin-top: 10px;
+}
+
+.dropdown-item.active {
+  background-color:  #1a7a44;
+}
+
+.form-control:focus {
+  border-color: #B3CBAA;
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.8), 0 0 8px rgba(66, 96, 60, 0.9);
+}
+
+.dropdown-placeholder-color {
+  color: #aaa9a9 !important;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.is-dropdown-invalid {
+  border-color: var(--error-color);
+}
+
+.is-cover-checkbox-invalid {
+  border-color: var(--error-color) !important;
+}
+
+.is-cover-checkbox-valid {
+  border-color: #d2d2d2 !important;
+}
+
+.is-cover-checkbox-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* #endregion */
+
+/* #region Form CSS */
+
+.form-control-div .form-control {
+  background-color: rgb(205 205 205 / 40%);
+  font-weight: 500;
+  border-color: white !important;
+  height: 60px !important;
+  font-size: 18px !important;
+  color: white;
+}
+
+.text-charcol {
+  color: var(--dark-charcol-color);
+}
+
+/* #endregion */
+
+/* #region Scroll bar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--arugula-color);
+}
+
+/* #endregion */
+
+/*#region Common btn-color css*/
+
+.arugula-color {
+  color: var(--arugula-color);
+}
+
+.arugula-color:hover {
+  color: var(--arugula-color);
+}
+
+.border-bottom-grey {
+  border-color: var(--light-grey-color) !important;
+}
+
+.text-gray{
+  color:#ECECEC;
+}
+
+.bg-gray{
+  background-color: #ECECEC !important;
+}
+
+.btn-black {
+  background-color: var(--dark-charcol-color);
+  border-color: var(--dark-charcol-color);  
+}
+
+.btn-black:hover,
+.btn-black:active {
+  background-color: var(--dark-charcol-color) !important;
+  border-color: var(--dark-charcol-color) !important;
+}
+
+.bg-white{
+  background-color: #FFFFFF;
+}
+
+.text-green{
+  color: #1a7a44 !important;
+}
+
+.bg-green{
+  background-color: #1a7a44 !important;
+}
+
+.bg-green:active, .bg-green:hover {
+  background-color: #1a7a44 !important;
+}
+
+.text-dark-gray{
+  color:  #6e6e6e !important;
+}
+
+.bg-pink{
+  background-color:#fa4093;
+}
+
+.bg-pink:hover{
+  background-color:#EB81B1 !important;
+}
+
+.bg-maroon {
+  background-color: maroon;
+}
+
+.bg-maroon:active, .bg-maroon:hover {
+  background-color: maroon;
+}
+
+.text-maroon{
+  color: maroon;
+}
+
+.bg-yellow {
+  background-color:#F0F365 !important; 
+}
+
+.bg-yellow:hover {
+  background-color: #d9db50 !important;
+}
+
+.text-yellow {
+  color: #F0F365;
+}
+/*#endregion Common btn-color css*/
+
+/* #region modal css  */
+.modal-footer {
+  border-color: var(--relish-color);
+}
+
+.modal-header {
+  border-color: var(--relish-color);
+}
+.modal-dialog-scrollable .modal-body {
+  /* height: auto !important; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 41px !important;
+}
+.terms-condition-popup img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  width: auto !important;
+}
+/* #endregion modal css  */
+
+/* #region Signature Pad CSS */
+canvas {
+  border: 1px solid rgb(105, 105, 105);
+  background-color: #efefef;
+  border-color: green;
+}
+/* #endregion Signature Pad CSS*/
+
+/* #region GRID CSS */
+.table td,
+.table th {
+  color: var(--dark-charcol-color);
+  font-family: 'Rubik-Regular';
+}
+
+.table.table-bordered.border-dark {
+  border-color: var(--dark-charcol-color) !important;
+}
+
+th[sortable] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+th[sortable].desc:before,
+th[sortable].asc:before {
+  content: "";
+  display: block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAmxJREFUeAHtmksrRVEUx72fH8CIGQNJkpGUUmakDEiZSJRIZsRQmCkTJRmZmJgQE0kpX0D5DJKJgff7v+ru2u3O3vvc67TOvsdatdrnnP1Y///v7HvvubdbUiIhBISAEBACQkAICAEhIAQ4CXSh2DnyDfmCPEG2Iv9F9MPlM/LHyAecdyMzHYNwR3fdNK/OH9HXl1UCozD24TCvILxizEDWIEzA0FcM8woCgRrJCoS5PIwrANQSMAJX1LEI9bqpQo4JYNFFKRSvIgsxHDVnqZgIkPnNBM0rIGtYk9YOOsqgbgepRCfdbmFtqhFkVEDVPjJp0+Z6e6hRHhqBKgg6ZDCvYBygVmUoEGoh5JTRvIJwhJo1aUOoh4CLPMyvxxi7EWOMgnCGsXXI1GIXlZUYX7ucU+kbR8NW8lh3O7cue0Pk32MKndfUxQFAwxdirk3fHappAnc0oqDPzDfGTBrCfHP04dM4oTV8cxr0SVzH9FF07xD3ib6xCDE+M+aUcVygtWzzbtGX2rPBrEUYfecfQkaFzYi6HjVnGBdtL7epqAlc1+jRdAap74RrnPc4BCijttY2tRcdN0g17w7HqZrXhdJTYAuS3hd8z+vKgK3V1zWPae0mZDMykadBn1hTQBLnZNwVrJpSe/NwEeDsEwCctEOsJTsgxLvCqUl2ACftEGvJDgjxrnBqkh3ASTvEWrIDQrwrnJpkB3DSDrGW7IAQ7wqnJtkBnLRztejXXVu4+mxz/nQ9jR1w5VB86ejLTFcnnDwhzV+F6T+CHZlx6THSjn76eyyBIOPHyDakhBAQAkJACAgBISAEhIAQYCLwC8JxpAmsEGt6AAAAAElFTkSuQmCC) no-repeat;
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+  float: left;
+}
+
+th[sortable].desc:before {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+}
+
+/* #endregion */
+
+/* #region Calender */
+.theme-green .bs-datepicker-head {
+    background-color: #1a7a44;;
+  }
+
+  .theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*=select-]:after, .theme-green .bs-datepicker-body table td[class*=select-] span:after {
+    background-color:  #1a7a44;;
+}
+
+.theme-green .btn-today-wrapper .btn-success, .theme-green .btn-clear-wrapper .btn-success {
+  background-color: #1a7a44;;
+  border-color: #1a7a44;;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #1a7a44;;
+}
+.shadow-color{
+  box-shadow: 2px 4px 4px rgb(33 33 33 / 60%) !important;
+}
+.shadow-checkout {
+  box-shadow: 2px 4px 4px rgb(69 69 69 / 60%) !important;
+}
+.my-10{
+  margin-top: 80px;
+  margin-bottom: 140px;
+}
+/* #endregion */
+
+.agreement-css .modal-dialog {
+  max-width: calc(100% - 10%) !important;
+}

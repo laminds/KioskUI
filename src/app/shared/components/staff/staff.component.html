@@ -1,0 +1,328 @@
+<div class="staff container margin-bottom-200">
+  <div class="border col-lg-12 col-md-12 col-sm-12 col-xs-12  rounded-1 mt-3">
+
+    <div class="p-2">
+      <div class="p-1 vl-title-type-section d-flex justify-content-between align-items-center gap-2">
+        <div class="col-lg-2 col-md-2 col-sm-3 col-4 vl-title-section">
+          <h5 class="m-0">Visitor Log</h5>
+        </div>
+        <div class="vl-type-section d-flex flex-wrap justify-content-end gap-2">
+          <label class="d-flex align-items-center" *ngFor="let highlightClass of highlightClassList; index as i">
+            <span class="badge border rounded-0 py-1 px-3 me-1"  [ngClass]="highlightClass.color">&nbsp;</span>
+            <p class="m-0 tab-text text-green">{{highlightClass.tabName}}</p>
+          </label>
+        </div>
+      </div>  
+    </div>
+
+    <div class="vl-border-section border border-2 rounded-0"></div>
+
+    <div class="form-grid-section p-3">
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+          <div class="row" [formGroup]="staffForm">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <label for="basic-url" class="form-label fs-14">From Date:<span class="text-danger"> *</span></label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control rounded-1" placeholder="mm/dd/yyyy"
+                  [(ngModel)]="staffObj.fromDate" #datepickerFD="bsDatepicker" formControlName="fromDate"
+                  bsDatepicker [bsConfig]="{ 
+                    showClearButton: true, 
+                    clearPosition: 'right', 
+                    showTodayButton: true, 
+                    todayPosition: 'left', 
+                    dateInputFormat: 'MM/DD/YYYY', 
+                    adaptivePosition: true, 
+                    isAnimated: true,
+                    selectFromOtherMonth: true
+                  }" placement="bottom" tabindex="1" [maxDate]="todayDate"
+                  (ngModelChange)="setMinimumDate(staffObj.fromDate)"
+                  [ngClass]="{ 'is-invalid': submitted && form.fromDate.errors }">
+                <span class="input-group-text rounded-1 cursor-pointer" id="basic-addon2"
+                  (click)="datepickerFD.toggle();" [attr.aria-expanded]="datepickerFD.isOpen">
+                  <i class="input-icon fa fa-calendar" aria-hidden="true"></i>
+                </span>
+                <!-- error block -->
+                <div class="invalid-feedback" *ngIf="submitted && form.fromDate.errors?.['required']">
+                  <sup>*</sup>Please enter/select from date.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <label for="basic-url" class="form-label fs-14">To Date:<span class="text-danger"> *</span></label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control rounded-1" placeholder="mm/dd/yyyy"
+                  [(ngModel)]="staffObj.toDate" #datepickerTD="bsDatepicker" formControlName="toDate" bsDatepicker
+                  [bsConfig]="{ 
+                    showClearButton: true, 
+                    clearPosition: 'right', 
+                    showTodayButton: true, 
+                    todayPosition: 'left', 
+                    dateInputFormat: 'MM/DD/YYYY', 
+                    adaptivePosition: true, 
+                    isAnimated: true,
+                    selectFromOtherMonth: true
+                  }" placement="bottom" tabindex="2" [maxDate]="todayDate" [minDate]="sevenDayDate"
+                  [ngClass]="{ 'is-invalid': submitted && form.toDate.errors }">
+                <span class="input-group-text rounded-1 cursor-pointer" id="basic-addon2"
+                  (click)="datepickerTD.toggle()" [attr.aria-expanded]="datepickerTD.isOpen">
+                  <i class="input-icon fa fa-calendar" aria-hidden="true"></i>
+                </span>
+                <!-- error block -->
+                <div class="invalid-feedback" *ngIf="submitted && form.toDate.errors?.['required']">
+                  <sup>*</sup>Please enter/select to date.
+                </div>
+              </div>
+            </div>
+
+            <div class="search-vl-data-section col-lg-3 col-md-4 col-sm-6 col-xs-12  mt-3">
+              <button type="button" class="btn btn-dark mt-3" (click)="getStaffDetails(staffObj)">
+                <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search</button>
+              <!-- error block -->
+            </div>
+            <div class="text-danger mb-2" *ngIf="isSevenDaysValidation == true">
+              <sup>*</sup>Please select date range between 7 days.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-2 col-sm-12 col-12">
+          <div class="mb-3">
+            <label for="global-search" class="form-label fs-14">Global Search</label>
+            <input type="text" class="form-control rounded-1" id="global-search" placeholder="Search anything"
+            [(ngModel)]="globalSearchTerm" tabindex="3">
+          </div>
+        </div>
+      </div>
+
+      <div class="vl-grid-section overflow-auto">
+        <table class="table table-bordered border-dark">
+          <thead class="vl-table-header sticky-top bg-white">
+            <tr>
+              <th scope="col" class="align-middle text-center fs-14"></th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="timeStamp" (sort)="onSort($event)">
+                SignedOn
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="guestType" (sort)="onSort($event)">
+                Guest Type
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="lastName" (sort)="onSort($event)">
+                Last Name
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="firstName" (sort)="onSort($event)">
+                First Name
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="phoneNumber" (sort)="onSort($event)">
+                PhoneNumber
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="email" (sort)="onSort($event)">
+                Email
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="gymTime" (sort)="onSort($event)"
+                *ngIf="isTodayDate">
+                Gym Time (HH:MM)
+              </th>
+              <th scope="col" class="align-middle text-center fs-14">CheckOut Time</th>
+              <th scope="col" class="align-middle text-center fs-14">Disclaimer</th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="salesPersonName" (sort)="onSort($event)">
+                SalesPerson Name
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="equipmentName" (sort)="onSort($event)">
+                Equipment
+              </th>
+              <th scope="col" class="align-middle text-center fs-14" sortable="totSpotBabysitting"
+                (sort)="onSort($event)">
+                Tot Spot Babysitting
+              </th>
+            </tr>
+
+            <tr>
+              <th scope="col" class="align-middle text-center"></th>
+              <th scope="col" class="align-middle">
+                <div class="input-group">
+                  <input type="text" class="form-control rounded-1" placeholder="MM/DD/YYYY" [(ngModel)]="timeStamp"
+                    #datepickerTimeStamp="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                      showClearButton: true, 
+                      clearPosition: 'right', 
+                      showTodayButton: true, 
+                      todayPosition: 'left', 
+                      dateInputFormat: 'MM/DD/YYYY', 
+                      adaptivePosition: true, 
+                      isAnimated: true
+                    }" placement="bottom" tabindex="5">
+                  <span class="input-group-text rounded-1 cursor-pointer" (click)="datepickerTimeStamp.toggle()"
+                    [attr.aria-expanded]="datepickerTimeStamp.isOpen">
+                    <i class="input-icon fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </div>
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="guesttype" placeholder="Guest Type"
+                  [(ngModel)]="guestType">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="lastname" placeholder="Last Name"
+                  [(ngModel)]="lastName">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="firstname" placeholder="First Name"
+                  [(ngModel)]="firstName">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="phonenumber" placeholder="Phone Number"
+                  [(ngModel)]="phoneNumber">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="email" placeholder="Email" [(ngModel)]="email">
+              </th>
+              <th scope="col" class="align-middle text-center" *ngIf="isTodayDate"></th>
+              <th scope="col" class="align-middle">
+                <div class="input-group">
+                  <input type="text" class="form-control rounded-1" placeholder="MM/DD/YYYY"
+                    [(ngModel)]="checkOutTimeStamp" #datepickerMDY="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                      showClearButton: true, 
+                      clearPosition: 'right', 
+                      showTodayButton: true, 
+                      todayPosition: 'left', 
+                      dateInputFormat: 'MM/DD/YYYY', 
+                      adaptivePosition: true, 
+                      isAnimated: true
+                    }" placement="bottom" tabindex="5">
+                  <span class="input-group-text rounded-1 cursor-pointer" (click)="datepickerMDY.toggle()"
+                    [attr.aria-expanded]="datepickerMDY.isOpen">
+                    <i class="input-icon fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </div>
+              </th>
+              <th scope="col" class="align-middle text-center"></th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="salespersonname" placeholder="SalesPerson Name"
+                  [(ngModel)]="salesPersonName">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="equipment" placeholder="Equipment"
+                  [(ngModel)]="equipmentName">
+              </th>
+              <th scope="col" class="align-middle">
+                <input type="text" class="form-control rounded-1" id="totspotbabysitting"
+                  placeholder="Tot Spot Babysitting" [(ngModel)]="totSpotBabysitting">
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let list of staffListData$ | async; index as i; last as last" [class]="list.color"
+              [ngClass]="{'tableSepration':list.seprationLine == 1 && !last}">
+              <td scope="row" class="fun-btn-section">
+                <button class="btn btn-black text-white mb-2 fs-14"
+                  *ngIf="(list.guestType != 'Data Trak Member' && list.guestType != 'Pickleball')"
+                  (click)="redirectToModule(list,'Sign Up')">Sign Up</button>
+                <button class="btn btn-black text-white mb-2 fs-14" *ngIf="list.guestType == 'Data Trak Member'"
+                  (click)="redirectToModule(list,'UpgradeMemberShip')">Upgrade</button>
+                <button class="btn btn-black text-white fs-14"
+                  *ngIf="(list.guestType != 'Data Trak Member' && list.guestType != 'Pickleball')"
+                  (click)="redirectToSurveyModule(list)">QLA</button>
+              </td>
+
+              <td class="fs-14">
+                <div *ngIf="!(list.contractUrl == null || list.contractUrl == '')">
+                  <a class="text-green text-decoration-none" [href]="list.contractUrl" target="_blank">
+                    <ngb-highlight [result]="list.timeStamp" [term]="timeStamp"></ngb-highlight>
+                  </a>
+                </div>
+                <div *ngIf="list.contractUrl == null || list.contractUrl == ''">
+                  <ngb-highlight [result]="list.timeStamp" [term]="timeStamp"></ngb-highlight>
+                </div>
+              </td>
+
+              <td class="fs-14">
+                <ngb-highlight [result]="list.guestType" [term]="globalSearchTerm" [term]="guestType"></ngb-highlight>
+              </td>
+
+              <td class="fs-14">
+                <div *ngIf="list.memberType == 'ActiveMember'">
+                    <ngb-highlight [result]="list.lastName" [term]="globalSearchTerm" [term]="lastName"></ngb-highlight>
+                </div>
+                <div *ngIf="list.memberType != 'ActiveMember'">
+                  <ngb-highlight [result]="list.lastName" [term]="globalSearchTerm" [term]="lastName"></ngb-highlight>
+                </div>
+              </td>
+
+              <td class="fs-14">
+                <div *ngIf="list.memberType == 'ActiveMember'">
+                  <!-- <a class="text-green text-decoration-none"
+                    [href]="'https://youfit.lightning.force.com/lightning/r/Lead/'+''+'/view'" target="_blank"
+                    [ngClass]="list.borderColor"> -->
+                    <ngb-highlight [result]="list.firstName" [term]="globalSearchTerm"
+                      [term]="firstName"></ngb-highlight>
+                  <!-- </a> -->
+                </div>
+                <div *ngIf="list.memberType != 'ActiveMember'">
+                  <ngb-highlight [result]="list.firstName" [term]="globalSearchTerm" [term]="firstName"></ngb-highlight>
+                </div>
+              </td>
+
+              <td class="fs-14 phone-number-section">
+                <div *ngIf="list.phoneNumber">
+                  <ngb-highlight [result]="list.phoneNumber " mask="(000) 000-0000"  [term]="globalSearchTerm"
+                    [term]="phoneNumber"></ngb-highlight>
+                </div>
+                <div *ngIf="!list.phoneNumber"></div>
+              </td>
+
+              <td class="fs-14">
+                <ngb-highlight [result]="list.email" [term]="globalSearchTerm" [term]="email"></ngb-highlight>
+              </td>
+
+              <td *ngIf="isTodayDate" class="fs-14">
+                <ngb-highlight [result]="list.gymTime" [term]="globalSearchTerm"></ngb-highlight>
+              </td>
+
+              <td class="fs-14">
+                <ngb-highlight [result]="list.checkOutTimeStamp" [term]="checkOutTimeStamp"></ngb-highlight>
+              </td>
+
+              <td class="fs-14 text-center">
+                <div *ngIf="list.disclaimerUrl != ''">
+                  <a class="text-green text-decoration-none" [href]="list.disclaimerUrl" target="_blank">
+                    <ngb-highlight result="Yes" [term]="globalSearchTerm"></ngb-highlight>
+                  </a>
+                </div>
+                <div *ngIf="list.disclaimerUrl==''">
+                  <ngb-highlight result="No" [term]="globalSearchTerm"></ngb-highlight>
+                </div>
+              </td>
+
+              <td class="fs-14">
+                <div *ngIf="list.salesPersonName != null" [ngClass]="{ 'text-center': list.salesPersonName == '-' }">
+                  <ngb-highlight [result]="list.salesPersonName" [term]="globalSearchTerm"
+                    [term]="salesPersonName"></ngb-highlight>
+                </div>
+              </td>
+
+              <td class="fs-14">
+                <div *ngIf="list.equipmentName != null" [ngClass]="{ 'text-center': list.equipmentName == '-' }">
+                  <ngb-highlight [result]="list.equipmentName" [term]="globalSearchTerm"
+                    [term]="equipmentName"></ngb-highlight>
+                </div>
+              </td>
+              
+
+              <td class="fs-14">
+                <div *ngIf="list.totSpotBabysitting != null"
+                  [ngClass]="{ 'text-center': list.totSpotBabysitting == '-' }">
+                  <ngb-highlight [result]="list.totSpotBabysitting" [term]="globalSearchTerm"
+                    [term]="totSpotBabysitting"></ngb-highlight>
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="(staffListData$ | async)!.length <= 0">
+              <td colspan="14" class="text-center text-danger">No visits found for today.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

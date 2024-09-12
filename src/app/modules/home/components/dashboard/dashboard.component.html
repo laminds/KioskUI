@@ -1,0 +1,43 @@
+<div class="club-section mt-5 margin-bottom-200">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <h1 class="gym-welcome-text text-center">{{welcomeText}}</h1>
+    <h2 class="club-select-text text-center mt-5">
+      {{selectClubLocation}}
+    </h2>
+
+    <div class="offset-lg-3 col-lg-6 offset-md-2 col-md-8 offset-sm-1 col-sm-10 col-xs-12 mt-5">
+      <div class="mb-3">
+        <label for="clubname" class="clubname form-label w-100">{{clubLocation}}</label>
+        <div class="btn-group p-0 col-lg-12 col-md-12 col-sm-12 col-12">
+          <button type="button"
+            class="dropdown-btn btn dropdown-toggle dropdown-toggle-split w-100 text-start py-2 px-3 rounded-2 bg-color-dropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <span *ngIf="clubObj.club_name == '' else clubName" class="sub-dropdown-div">Choose a club...</span>
+            <ng-template #clubName>{{ clubObj.club_name }}</ng-template>
+          </button>
+
+          <ul class="dropdown-btn-menu dropdown-menu w-100 pt-0 overflow-auto">
+          <div class="search-div sticky-top">
+              <div class="mx-3 mb-2 ">
+                <input type="text" class="filter-text form-control" placeholder="Search..."
+                  [(ngModel)]="searchFilter" />
+              </div>
+            </div>
+            <li class="dropdown-item cursor-pointer py-2 "
+            *ngFor="let list of clubList | customHomeFilter: searchFilter; index as i;"
+            [ngClass]="{ 'active': i == activeIndex }" (click)="activeSelectedOption(list, i)">
+            {{ list.club_name }}
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   
+    <div class="selected-club-section col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+      <button type="button" class="selected-club-btn btn btn-success w-100 text-uppercase rounded-1"
+        (click)="viewCRMServices(clubObj)">
+        Select
+      </button>
+    </div>
+  </div>
+</div>

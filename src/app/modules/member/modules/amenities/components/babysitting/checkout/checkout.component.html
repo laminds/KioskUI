@@ -1,0 +1,233 @@
+<div class="tot-spot-initial-section margin-bottom-200 margin-top-100 my-10">
+  <div class="container">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 membership-checkout-section mt-3">
+      <h2 class="text-center fw-bolder mt-5">
+        Membership Checkout
+      </h2>
+      <h4 class="text-center fw-normal mt-4">
+        Please Fill Out The Information Below:
+      </h4>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-5">
+      <div class="search-guest-member-section bg-form" [formGroup]="babySittingInfoForm">
+        <p class="fs-5 mt-4 fw-bold text-uppercase">General Information</p>
+        <div class="row mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3 input-font-size">
+              <input type="tel" class="form-control rounded-1 border border-dark shadow shadow-checkout" placeholder="First Name"
+                formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }" tabindex="1">
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['required']">
+                <sup>*</sup>Please enter first name.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['maxlength']">
+                <sup>*</sup>First name will not be greater than 15 characters.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['pattern']">
+                <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('),
+                hyphens(-), or
+                spaces and must begin with an alpha character.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3 input-font-size">
+              <input type="tel" class="form-control rounded-1 border border-dark shadow shadow-checkout" placeholder="Last Name"
+                formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }" tabindex="2">
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['required']">
+                <sup>*</sup>Please enter last name.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['maxlength']">
+                <sup>*</sup>Last name will not be greater than 15 characters.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['pattern']">
+                <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('),
+                hyphens(-), or
+                spaces and must begin with an alpha character.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3 input-font-size">
+              <input type="tel" class="form-control rounded-1 border border-dark shadow shadow-checkout" placeholder="Email Address"
+                [ngClass]="{ 'is-invalid': submitted && form.email.errors }" formControlName="email" tabindex="3">
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="(submitted && form.email.errors?.['required']) || 
+                      (submitted && form.email.errors?.['pattern'])">
+                <sup>*</sup>Please enter valid email.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3 input-font-size">
+              <input type="tel" class="form-control rounded-1 border border-dark shadow shadow-checkout" placeholder="Phone Number"
+                maxlength="14" [ngClass]="{ 'is-invalid': submitted && form.phoneNumber.errors}"
+                formControlName="phoneNumber" mask="(000) 000-0000" tabindex="4">
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="submitted  && form.phoneNumber.errors?.['required']">
+                <sup>*</sup>Please enter correct phone number.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.phoneNumber.errors?.['pattern']">
+                <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3">
+              <input type="text" class="datepicker-text form-control rounded-1 border border-dark shadow p-2 FieldDOB shadow-checkout"
+                placeholder="Date of Birth" formControlName="dob" [maxDate]="today" #datepickerMDY="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                            showClearButton: true, 
+                            clearPosition: 'right', 
+                            showTodayButton: true, 
+                            todayPosition: 'left', 
+                            dateInputFormat: 'MM/DD/YYYY', 
+                            adaptivePosition: true, 
+                            isAnimated: true, 
+                            startView: 'year' 
+                          }" placement="bottom" tabindex="5" [ngClass]="{ 'is-invalid': submitted && form.dob.errors}">
+
+              <!-- error block -->
+
+              <div class="invalid-feedback" *ngIf="submitted && form.dob.errors?.['required']">
+                <sup>*</sup>Please enter/select birthdate.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && form.dob.errors?.['checkMinors']">
+                <sup>*</sup>We do not allow minors to join online. Please come visit us in person.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+            <div class="input-group mb-3">
+              <button type="button"
+                class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start p-2 form-control rounded-1 border border-dark shadow shadow-checkout"
+                data-bs-toggle="dropdown" aria-expanded="false" tabindex="6"
+                [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.gender.errors }">
+                <span *ngIf="!babySittingInfoForm.get('gender')!.value else genderName"
+                  class="dropdown-placeholder-color"> Gender </span>
+                <ng-template #genderName>{{ babySittingInfoForm.get('gender')!.value
+                  }}</ng-template>
+              </button>
+              <ul class="dropdown-menu w-100 overflow-auto">
+                <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i;"
+                  [ngClass]="{ 'active': i == activeIndex }" (click)="activeSelectedGenderOption(list, i)">
+                  {{ list }}
+                </li>
+              </ul>
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="submitted && form.gender.errors?.['required']">
+                <sup>*</sup>Please select gender.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class=" m-auto">
+            <label class="form-label fs-5">{{teamMemberText}}</label>
+            <div class="input-group mb-3 input-font-size">
+              <button type="button"
+                class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow shadow-checkout"
+                data-bs-toggle="dropdown" aria-expanded="false" tabindex="7"
+                [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.salesPersonObj.errors }">
+                <span *ngIf="babySittingInfoForm.get('salesPersonObj')!.value == null else fullName"
+                  class="dropdown-placeholder-color">
+                  Team Member Name</span>
+                <ng-template #fullName>{{
+                  babySittingInfoForm.get('salesPersonObj')!.value?.fullName
+                  }}</ng-template>
+              </button>
+              <ul
+                class="dropdown-btn-menu mt-height dropdown-menu w-100 pt-0 overflow-auto dropdown-height search-div sticky-top">
+                <div class="mx-3 mb-2 mt-2 dropdown-w">
+                  <input type="text" class="filter-text form-control" placeholder="Search..."
+                    formControlName="searchFilter" />
+                </div>
+                <li class="dropdown-item cursor-pointer py-2"
+                  *ngFor="let list of salesPersonList | customMemberFilter: babySittingInfoForm.get('searchFilter')!.value; index as i;"
+                  [ngClass]="{ 
+                    'active': i == activeIndex ,
+                  'text-danger': list.salesPersonMissing == 1
+                }" (click)="oepnMissingSalesPersonModal(list); activeSelectedOption(list, i)">
+                  {{ list.fullName }}
+                </li>
+              </ul>
+              <div class="invalid-feedback" *ngIf="submitted && form.salesPersonObj.errors?.['required']">
+                <sup>*</sup>Please select team member
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="m-auto">
+          
+
+          <h5 class="fw-bolder mt-4">PLAN SUMMARY</h5>
+
+          <button type="button" class="btn bg-green col-12 my-3 text-white p-2 fs-5 text-uppercase shadow-checkout"
+            (click)="selectBabySittingPlans()">
+            Choose Another Plan
+          </button>
+          <div>
+            <div class="bg-white rounded-2 border px-3 p-2 border-dark">
+              <div class="col-lg-12 m-auto">
+                <div class="pt-3 fs-3 fw-bold text-black">
+                  {{ totSpotObj.planName }}
+                </div>
+                <hr class="border-2 border-black" />
+                <div>
+                  <table class="table bg-white p-3">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="border-0 text-dark-gray">
+                          Initiation Fee
+                        </th>
+                        <td colspan="3" class="border-0 text-dark-gray"></td>
+                        <td class="align-middle border-0 text-end fw-bold text-dark-gray">
+                          ${{totSpotObj.initiationFee}}.00
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <hr />
+                  <table class="table p-3">
+                    <tbody>
+                      <tr class="">
+                        <th scope="row" class="border-0 text-dark-gray">
+                          Total Due Today(tax included)
+                        </th>
+                        <td colspan="3" class="border-0 text-dark-gray"></td>
+                        <td class="align-middle border-0 text-end fw-bold text-dark-gray">
+                          ${{totSpotObj.downPaymentTotalAmount}}.00
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="fw-bold text-14">
+                    Annual Fee due 60 days from join date (tax included).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-12 m-auto mt-3">
+          <button type="button" (click)="childCareCheckOut(babySittingInfoForm)" class="btn btn-black text-white col-12 mt-3 p-2 fs-5 text-uppercase shadow-checkout">
+            SECURE CHECKOUT
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

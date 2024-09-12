@@ -1,0 +1,110 @@
+<div class="container search-guest-member-page margin-bottom-200 margin-top-200">
+  <div class="mt-5 mb-5">
+    <h1 class="fw-bold text-white text-center ">{{welcomeText}}</h1>
+  </div>
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-5">
+    <div class="search-guest-member-section form-control-div" [formGroup]="minorInfoForm">
+      <!-- <div class="container col-md-12 col-sm-12 col-12 "> -->
+      <div class="row mb-3">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+          <div class="input-group mb-3 input-font-size">
+            <input type="tel" class="form-control radious-2 border border-2" placeholder="First Name"
+              formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }">
+            <!-- error block -->
+            <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['required']">
+              <sup>*</sup>Please enter first name.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['maxlength']">
+              <sup>*</sup>First name will not be greater than 15 characters.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['pattern']">
+              <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('),
+              hyphens(-), or
+              spaces and must begin with an alpha character.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+          <div class="input-group mb-3 input-font-size">
+            <input type="tel" class="form-control radious-2 border border-2" placeholder="Last Name"
+              formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }">
+            <!-- error block -->
+            <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['required']">
+              <sup>*</sup>Please enter last name.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['maxlength']">
+              <sup>*</sup>Last name will not be greater than 15 characters.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['pattern']">
+              <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('),
+              hyphens(-), or
+              spaces and must begin with an alpha character.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+          <div class="input-group mb-3 input-font-size">
+            <input type="tel" class="form-control radious-2 border border-2" placeholder="Phone Number" maxlength="14"
+              [ngClass]="{ 'is-invalid': submitted && form.phoneNumber.errors}" formControlName="phoneNumber"
+              mask="(000) 000-0000">
+            <!-- error block -->
+            <div class="invalid-feedback" *ngIf="submitted  && form.phoneNumber.errors?.['required']">
+              <sup>*</sup>Please enter correct phone number.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.phoneNumber.errors?.['pattern']">
+              <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+          <div class="input-group mb-3">
+            <input type="text" class="datepicker-text form-control radious-2 border border-2 p-2 FieldDOB"
+              placeholder="Date of Birth" formControlName="DOB" [maxDate]="today" #datepickerMDY="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                showClearButton: true, 
+                clearPosition: 'right', 
+                showTodayButton: true, 
+                todayPosition: 'left', 
+                dateInputFormat: 'MM/DD/YYYY', 
+                adaptivePosition: true, 
+                isAnimated: true, 
+                startView: 'year' 
+              }" placement="bottom" tabindex="5" [ngClass]="{ 'is-invalid': submitted && form.DOB.errors}">
+
+            <!-- error block -->
+
+            <div class="invalid-feedback" *ngIf="submitted && form.DOB.errors?.['required']">
+              <sup>*</sup>Please enter/select birthdate.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form.DOB.errors?.['checkMinors']">
+              <sup>*</sup>We do not allow minors to join online. Please come visit us in person.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 m-auto col-md-12 col-sm-12 col-sm-12">
+          <div class="mt-4">
+            <div class="fs-5 mb-1 text-white">E-Signature</div>
+            <div class="d-flex flex-column align-items-center">
+              <canvas id="signature-pad" accept="accept" clear="clear" width="600" height="200"
+                class="col-12 signature-pad rounded-1" #signPadCanvas></canvas>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      
+      <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+        <button type="button" (click)="saveMinorInfo(minorInfoForm)" class="btn bg-green w-100 text-white">
+           Submit
+        </button>
+    </div>
+    </div>
+  </div>

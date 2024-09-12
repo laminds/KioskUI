@@ -1,0 +1,77 @@
+.bg-form .form-control {
+  padding: 1rem 0.8rem !important;
+  font-size: 1.1rem !important;
+}
+
+.dropdown-w .form-control {
+  padding: .375rem .75rem !important;
+}
+
+.dropdown-btn,
+.dropdown-btn:hover,
+.dropdown-btn.show {
+  height: 60px !important;
+}
+
+.mt-height {
+  height: 200px;
+}
+
+::placeholder {
+  color: #aaa9a9;
+  font-size: 18px;
+}
+
+.dropdown-placeholder-color {
+  color: #aaa9a9 !important;
+  font-size: 18px;
+  font-weight: unset !important;
+}
+
+
+#Survey label {
+  font-weight: normal;
+  font-size: 19px;
+}
+
+.QLACheckBox {
+  height: 16px;
+  width: 17px;
+}
+
+.ProgressBardecreaseButton {
+  text-align: center;
+  width: 0px;
+  border: solid 1px;
+  padding-left: 15px;
+  padding-right: 24px;
+}
+
+.ProgressBarIncreaseButton {
+  text-align: center;
+  width: 0px;
+  padding-left: 10px;
+  border: solid 1px;
+  padding-right: 31px;
+}
+
+.ngx-slider {
+  position: relative;
+  display: inline-block;
+  width: 60%;
+  height: 4px;
+  margin: 11px 26px 14px 23px;
+  vertical-align: middle;
+  user-select: none;
+  color: white !important;
+}
+
+::ng-deep 
+  .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+    color: white !important;
+}
+
+::ng-deep 
+.ngx-slider .ngx-slider-bubble {
+  color: white !important;
+}

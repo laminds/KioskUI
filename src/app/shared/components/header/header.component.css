@@ -1,0 +1,113 @@
+
+  /* #region New UI-------------------------------- */
+  
+  .header-section .logo-section .logo-image {
+    max-height: 52px;
+    max-width: 250px;
+  }
+
+  .logo-img {
+    width: 50px;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  .nav-link{
+    color: black;
+  }
+  
+  .form-control {
+    background-color: rgb(200, 199, 199);
+    opacity: 0.7;
+    font-weight: 500;
+    border: solid 2px;
+    border-radius: 5px;
+    border-color: white;
+    color: black;
+  }
+  
+  .btn {
+    background: #1a7a44;
+    color: white;
+    width: 123px;
+  }
+  
+  .btn:hover {
+    background-color: #135f34;
+    color: white;
+  }
+
+  .modal-header {
+    font-size: 25px;
+  }
+
+  /* Custom CSS for tooltip */
+.tooltip-top {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-top .tooltip-content {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-top .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip-top:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form-label span {
+  color: red;
+}
+  
+  /* @media only screen and (max-width: 991px) {
+    #title {
+      display: none;
+    }
+  
+    #line1 {
+      display: none;
+    }
+  
+    #line2 {
+      display: none;
+    }
+  } */
+  
+  @media only screen and (max-width: 425px) {
+    h1 {
+      font-size: 24px;
+    }
+  
+    .img-fluid {
+      height: 100vh;
+    }
+  }
+  
+  .staff-size{
+    font-size: 5em;
+}
+  /* #endregion New UI-------------------------------- */

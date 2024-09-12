@@ -1,0 +1,131 @@
+<div class="container search-guest-member-page margin-bottom-200" *ngIf="!leadMemberListSection">
+    <h1 class="mt-5 text-white text-center">Hi <span class="text-uppercase">
+        {{leadObj.fullName}}
+    </span>!</h1>
+    <div>
+        <p class="fs-5 fw-bold text-white text-center" id="sub-heading">
+           {{insuranceSubHeadingText}}
+        </p>
+        <div>
+            <label class="form-label text-white fs-5 mt-2">{{profileinfo}}</label>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="search-guest-member-section" [formGroup]="newSilverForm">
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control" placeholder="First Name" formControlName="firstName"
+                            [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }">
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['required']">
+                            <sup>*</sup>Please enter first name.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['maxlength']">
+                            <sup>*</sup>First name will not be greater than 15 characters.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['pattern']">
+                            <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('),
+                            hyphens(-), or
+                            spaces and must begin with an alpha character.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control" placeholder="Last Name" formControlName="lastName"
+                            [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }">
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['required']">
+                            <sup>*</sup>Please enter last name.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['maxlength']">
+                            <sup>*</sup>Last name will not be greater than 15 characters.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['pattern']">
+                            <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('),
+                            hyphens(-), or
+                            spaces and must begin with an alpha character.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control" placeholder="Email Address"
+                            [ngClass]="{ 'is-invalid': submitted && form.email.errors }" formControlName="email">
+                        <div class="invalid-feedback" *ngIf="(submitted && form.email.errors?.['required']) || 
+                        (submitted && form.email.errors?.['pattern'])">
+                            <sup>*</sup>Please enter valid email.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control" placeholder="Phone Number" maxlength="14"
+                            [ngClass]="{ 'is-invalid': submitted && form.phoneNumber.errors}"
+                            formControlName="phoneNumber" mask="(000) 000-0000">
+                        <div class="invalid-feedback" *ngIf="submitted  && form.phoneNumber.errors?.['required']">
+                            <sup>*</sup>Please enter correct phone number.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.phoneNumber.errors?.['pattern']">
+                            <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
+                    <label class="form-label text-white fs-5">{{healthLabel}}</label>
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control" placeholder="123456789" maxlength="14"
+                            [ngClass]="{ 'is-invalid': submitted && form.silverFitnessID.errors}"
+                            formControlName="silverFitnessID">
+                            <div class="invalid-feedback" *ngIf="submitted  && form.silverFitnessID.errors?.['required']">
+                                <sup>*</sup>Please enter Ash Fitness Id
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-3">
+                <button type="button"
+                    class="btn btn-success w-100 arugula-bgcolor text-white" (click)="searchHealthInfo(newSilverForm)">
+                    {{searchbtn}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  <div *ngIf="leadMemberListSection">
+    <h1 class="mt-5 text-white text-center">{{foundText}}</h1>
+    <h2 class="text-center text-white">
+      {{foundMessage}}
+    </h2>
+    <div class="container">
+      <div class="row prospects-section mt-5 ">
+        <div class="prospect-list-section">
+          <div class="row d-flex flex-wrap justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let mlist of silverFitList">
+                <div (click)="getSilverFitURLShortCode()">
+              <div class="user-box text-center rounded-top" >
+                <div class="p-3">
+                  <div class="fw-bold">{{ mlist.fullName }}</div>
+                  <div class="fw-normal">{{ mlist.phoneNumber }}</div>
+                  <div class="fw-normal">{{ mlist.email }}</div>
+                </div>
+            </div>
+                <div class="user-footer p-2 rounded-bottom text-white text-center">
+                  <h6 class="mb-0 p-1">{{userFoundText}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

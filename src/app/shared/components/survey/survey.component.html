@@ -1,0 +1,392 @@
+<div id="Survey" class="survey-page margin-bottom-200">
+
+  <h2 class="text-center title-text mt-5 text-white">Please Fill Out The Information Below:</h2>
+  <h5 class="text-center text-danger mt-4 ">“*” = Required</h5>
+  <div class="row">
+    <div class="offset-lg-2 col-sm-12">
+      <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="form-group col-12 mt-5">
+          <label class="form-label col-12 text-white fs-5">Team Member<span class="text-danger">&nbsp;*</span></label>
+          <div class="btn-group p-0 col-lg-8 col-md-8 col-12">
+            <button type="button"
+              class="mb-3 dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span *ngIf="salesPersonObj.fullName == '' else FullName" class="sub-dropdown-div">Choose Sales
+                Person..</span>
+              <ng-template #FullName>{{ salesPersonObj.fullName }}</ng-template>
+            </button>
+            <ul class="dropdown-btn-menu  dropdown-menu w-100 overflow-auto mt-height ">
+              <div class="mx-3 mb-2">
+                <input type="text" class="filter-text form-control" placeholder="Search..."
+                  [(ngModel)]="searchFilter" />
+              </div>
+              <li class="dropdown-item cursor-pointer py-2"
+                *ngFor="let list of salesPersonList | customeSharedfilter: searchFilter; index as i;"
+                [ngClass]="{ 'active': i == activeIndex ,'text-danger': list.salesPersonMissing == 1}"
+                (click)="oepnMissingSalesPersonModal(list);activeSelectedOption(list, i)">
+                {{ list.fullName }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngFor="let list of questionWithOption; let indexForm = index">
+
+          <div *ngIf="list.QuestionOrderId == '1'" class="mt-4">
+            <label class="col-12 text-white fs-5">Question 1<span class="text-danger">&nbsp;*</span></label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+
+            <div class="col-12">
+              <input class="text-white me-2 QLACheckBox" [(ngModel)]="surveyQuestion.LoseWeight" type="checkbox"
+                id="LoseWeight" name="LoseWeight" [value]="checkBoxList[0].name" (change)="checkUncheckLoseWeight()">
+              <label for="LoseWeight" class="text-white"> {{checkBoxList[0].name}}</label>
+            </div>
+
+            <div *ngIf="loseWeightQuestionDetail">
+              <div class="col-lg-8 my-4">
+                <button class="col-lg-1 col-xs-1 ProgressBardecreaseButton" (click)="decreaseProgressBarValue();">
+                  <div class="text-center">0</div>
+                </button>
+
+                <ngx-slider class="col-lg-6 text-white" [(value)]="slider.value"
+                  [options]="slider.options"></ngx-slider>
+
+                <button class="col-lg-1 col-xs-1 ProgressBarIncreaseButton" (click)="increaseProgressBarValue();">
+                  <div class="text-center">50+</div>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Gainstrength"
+                [(ngModel)]="surveyQuestion.Gainstrength" name="Gainstrength" value="{{checkBoxList[1].name}}">
+              <label for="Gainstrength" class="text-white"> {{checkBoxList[1].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Buildmuscle" name="Buildmuscle"
+                [(ngModel)]="surveyQuestion.Buildmuscle" value="{{checkBoxList[2].name}}">
+              <label for="Buildmuscle" class="text-white">{{checkBoxList[2].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Toneup" name="Toneup"
+                [(ngModel)]="surveyQuestion.Toneup" value="{{checkBoxList[3].name}}">
+              <label for="Toneup" class="text-white"> {{checkBoxList[3].name}} </label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Increaseendurance"
+                [(ngModel)]="surveyQuestion.Increaseendurance" name="Increaseendurance"
+                value="{{checkBoxList[4].name}}">
+              <label for="Increaseendurance" class="text-white"> {{checkBoxList[4].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Injury/Rehab" name="Injury/Rehab"
+                value="{{checkBoxList[5].name}}" [(ngModel)]="surveyQuestion.InjuryRehab"
+                (change)="checkUncheckInjuryRehab()">
+              <label for="Injury/Rehab" class="text-white"> {{checkBoxList[5].name}}</label>
+            </div>
+
+            <div *ngIf="InjuryRehabQuestionDetail">
+              <div class="ms-4 mt-3">
+                <label class="col-12 text-white">{{questionsOneSubQuestions[1].name}}</label>
+                <div class="col-lg-7">
+                  <input class="form-control  rounded-1" id="RGLastName" type="text"
+                    [(ngModel)]="surveyQuestion.InjuryRehabQuestion" maxlength="100" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="list.QuestionOrderId == '2'" class="mt-4">
+            <label class="Que-title col-lg-12 text-white col-xs-12 Sumaryspace">Question 2<span
+                class="text-danger">&nbsp;*</span></label>
+            <label class="col-lg-12 col-xs-12 text-white ">{{list.Name}}</label>
+
+            <div class="col-lg-8 mt-4">
+              <button class="col-lg-2 col-xs-1 ProgressBardecreaseButton"
+                (click)="decreaseProgressBarValueForQuestion2();">
+                <div class="text-center">0</div>
+              </button>
+
+              <ngx-slider class="col-lg-6 text-white" [(value)]="slider1.value"
+                [options]="slider1.options"></ngx-slider>
+
+              <button class="col-lg-2 col-xs-1 ProgressBarIncreaseButton"
+                (click)="increaseProgressBarValueForQuestion2();">
+                <div class="text-center">10</div>
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="list.QuestionOrderId == '3'" class="mt-4">
+            <label class="col-12 text-white fs-5">Question 3<span class="text-danger">&nbsp;*</span></label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+
+            <input class="QLACheckBox me-2 col-12" [(ngModel)]="surveyQuestion.personalevent" type="checkbox"
+              id="Personalevent" name="Personalevent" value="{{thirdcheckBoxList[0].name}}">
+            <label for="Personalevent" class="text-white"> {{thirdcheckBoxList[0].name}}</label>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Specialevent"
+                [(ngModel)]="surveyQuestion.specialevent" name="Specialevent" value="{{thirdcheckBoxList[1].name}}">
+              <label for="Specialevent" class="text-white"> {{thirdcheckBoxList[1].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Healthspecial" name="Healthspecial"
+                [(ngModel)]="surveyQuestion.healthspecial" value="{{thirdcheckBoxList[2].name}}">
+              <label for="Healthspecial" class="text-white">{{thirdcheckBoxList[2].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Lifechange" name="Lifechange"
+                [(ngModel)]="surveyQuestion.lifechange" value="{{thirdcheckBoxList[3].name}}">
+              <label for="Lifechange" class="text-white"> {{thirdcheckBoxList[3].name}} </label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="wellbeing" name="wellbeing"
+                [(ngModel)]="surveyQuestion.wellbeing" value="{{thirdcheckBoxList[5].name}}">
+              <label for="wellbeing" class="text-white"> {{thirdcheckBoxList[5].name}}</label>
+            </div>
+
+            <div class="col-12">
+              <input class="QLACheckBox me-2" type="checkbox" id="Other" [(ngModel)]="surveyQuestion.other" name="Other"
+                value="{{thirdcheckBoxList[4].Name}}" (change)="checkUncheckthirdCheckBox()">
+              <label for="Other" class="text-white"> {{thirdcheckBoxList[4].name}}</label>
+            </div>
+
+            <div *ngIf="otherQuestionDetail">
+              <div class="col-lg-6 ms-5 mt-2">
+                <input class="form-control  rounded-1" id="OtherQuestion" type="text"
+                  [(ngModel)]="surveyQuestion.otherQuestion" maxlength="100" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 mt-4 "
+            *ngIf="list.FormInputName == 'DropDown' && list.QuestionOrderId != 2 && list.QuestionOrderId != 1.1">
+            <label class="col-12 text-white fs-5">Question {{list.QuestionsTypeOrderId}}<span
+                class="text-danger">&nbsp;*</span></label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+
+            <select id="select"
+              class="col-lg-8 col-md-8 col-12 selectDrop mb-3 bg-white rounded-1 border border-dark input-font-size dropdown-btn btn dropdown-toggle dropdown-toggle-split text-start py-2 px-3 rounded-2 mt-2"
+              [(ngModel)]="list.AnswerName" name="item" required (change)="hideShowOthertextbox(list.AnswerName,list.QuestionOrderId);">
+              <option hidden value="null" class="color-text" disabled selected>Choose...</option>
+              <option [value]="item.name" *ngFor="let item of list.List; index as i">
+                {{ item.name }}
+              </option>
+            </select>
+            <div *ngIf="hideShowOtherfield && list.QuestionsTypeOrderId == '8b'">
+              <label class="col-12 text-white">{{questionsEightSubQuestions[0].name
+                }}<span class="text-danger">&nbsp;*</span>
+              </label>
+              <div class="col-lg-8 col-md-8 col-12 ">
+                <input id="RGLastName" type="text" class="form-control rounded-1"
+                  [(ngModel)]="surveyQuestion.OtherQuestion" maxlength="100" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-4" *ngIf="list.QuestionOrderId == '5'">
+            <label class="col-12 text-white fs-5"> Question {{list.QuestionsTypeOrderId}} <span
+                class="text-danger">*</span> </label>
+
+            <label class="col-12 text-white">{{list.Name}}</label>
+            <div class="col-12">
+              <label class="radio-inline text-white">
+                <input type="radio" value="{{radiobuttonListforQuestionsSix[0].name}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.motivationforGoals" name="{{indexForm + list.QuestionsTypeOrderId}}"
+                  (change)="hideshowQuestionsMotivationforGoalsQuestions(surveyQuestion.motivationforGoals);">
+                {{radiobuttonListforQuestionsSix[0].name}}
+              </label>
+
+              <label class="radio-inline text-white ms-3">
+                <input type="radio" value="{{radiobuttonListforQuestionsSix[1].name}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.motivationforGoals" name="{{indexForm + list.QuestionsTypeOrderId}}"
+                  (change)="hideshowQuestionsMotivationforGoalsQuestions(surveyQuestion.motivationforGoals);">
+                {{radiobuttonListforQuestionsSix[1].name}}</label>
+
+              <div *ngIf="motivationGoalsDetail">
+                <label class="col-12 ms-5 mt-2 text-white ">What is your fitness plan? </label>
+                <div class="col-lg-6 col-md-8 col-12 ">
+                  <input id="RGLastName" type="text" class="form-control ms-5 rounded-1"
+                    [(ngModel)]="surveyQuestion.motivationforGoalsDetail" maxlength="100" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-4" *ngIf="list.QuestionOrderId == '6'">
+            <label class="col-12 text-white fs-5"> Question {{list.QuestionsTypeOrderId}} <span
+                class="text-danger">*</span>
+            </label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+
+            <div class="col-12">
+
+              <label class="radio-inline text-white ">
+                <input type="radio" [value]="radiobuttonListforQuestionsSix[2].name"
+                  name="{{indexForm + list.QuestionsTypeOrderId}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.mealplanning" (change)="hideshowQuestionsSixsubQuestions();">
+                {{radiobuttonListforQuestionsSix[2].name}}</label>
+
+              <label class="radio-inline text-white ms-3">
+                <input type="radio" [value]="radiobuttonListforQuestionsSix[3].name" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.mealplanning" name="{{indexForm + list.QuestionsTypeOrderId}}"
+                  (change)="hideshowQuestionsSixsubQuestions();">
+                {{radiobuttonListforQuestionsSix[3].name}}</label>
+
+
+              <div *ngIf="mealplanningDetail" class="mt-1 ms-5">
+                <label class="col-12 text-white">{{questionsOneSubQuestions[2].name}}</label>
+                <label class="radio-inline text-white">
+                  <input type="radio" value="{{radiobuttonListforQuestionsSix[6].name}}"
+                    [(ngModel)]="surveyQuestion.mealplanningSubDetail" class="QLACheckBox me-3 ">
+                  {{radiobuttonListforQuestionsSix[6].name}}</label>
+
+                <label class="radio-inline text-white ms-3">
+                  <input type="radio" value="{{radiobuttonListforQuestionsSix[7].name}}"
+                    [(ngModel)]="surveyQuestion.mealplanningSubDetail" class="QLACheckBox me-3">
+                  {{radiobuttonListforQuestionsSix[7].name}}</label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group mt-4"
+            *ngIf="list.FormInputName.includes('Radio') && list.QuestionOrderId != '6' && list.QuestionOrderId != '13' && list.QuestionOrderId != '5' && list.QuestionOrderId != '9' && list.QuestionOrderId != '9.1'"
+            [hidden]="list.ParentID != null">
+            <label class="col-12 text-white fs-5"> Question {{list.QuestionsTypeOrderId}} <span
+                class="text-danger">*</span> </label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+            <div class="col-12">
+              <label class="radion-inline text-white" *ngFor="let x of radiobuttonList; let i = index">
+                <div *ngIf="x.questionOrderId == list.QuestionOrderId" [ngClass]="{ 'me-3': x.name == 'Yes' }">
+                  <input type="radio" name="{{i + list.QuestionsTypeOrderId}}" [(ngModel)]="list.AnswerName"
+                    class="QLACheckBox me-2" [value]="x.name">
+                  {{x.name}}
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group mt-4"
+            *ngIf="list.FormInputName.includes('CheckBox') && list.QuestionOrderId != '1' && list.QuestionOrderId != '3'">
+            <label class="col-12 text-white">Question {{list.QuestionsTypeOrderId}}<span
+                class="text-danger">&nbsp;*</span></label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+            <div class="col-12 text-white" *ngFor="let C of checkBoxList">
+              <div *ngIf="C.questionOrderId == list.QuestionOrderId">
+                <label id="CheckBox_{{C.displayName}}" class="ulabel">
+                  <input id="CheckBox_{{C.displayName}}" type="checkbox" class="QLACheckBox"
+                    [(ngModel)]="C.Selected" />&nbsp;
+                  {{C.displayName}}
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-4" *ngIf="list.QuestionOrderId == '9'">
+            <label class="col-12 text-white fs-5"> Question {{list.QuestionsTypeOrderId}} <span
+                class="text-danger">*</span>
+            </label>
+            <label class="col-12 text-white">{{list.Name}}</label>
+
+            <div class="col-12">
+
+              <label class="radio-inline text-white ">
+                <input type="radio" [value]="radiobuttonListforQuestionsNine[0].name"
+                  name="{{indexForm + list.QuestionsTypeOrderId}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.familymembers" (change)="hideshowQuestionsNinesubQuestions();">
+                {{radiobuttonListforQuestionsNine[0].name}}</label>
+
+              <label class="radio-inline text-white ms-3">
+                <input type="radio" [value]="radiobuttonListforQuestionsNine[1].name" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.familymembers" name="{{indexForm + list.QuestionsTypeOrderId}}"
+                  (change)="hideshowQuestionsNinesubQuestions();">
+                {{radiobuttonListforQuestionsNine[1].name}}</label>
+
+
+              <div *ngIf="familymembersDetail" class="mt-1 ms-5">
+                <label class="col-12 text-white">{{questionsNineSubQuestions[0].name}}</label>
+                <label class="radio-inline text-white">
+                  <input type="radio" value="{{radiobuttonListforQuestionsNine[0].name}}"
+                    [(ngModel)]="surveyQuestion.familymembersSubDetail" class="QLACheckBox me-3 ">
+                  {{radiobuttonListforQuestionsNine[0].name}}</label>
+
+                <label class="radio-inline text-white ms-3">
+                  <input type="radio" value="{{radiobuttonListforQuestionsNine[1].name}}"
+                    [(ngModel)]="surveyQuestion.familymembersSubDetail" class="QLACheckBox me-3">
+                  {{radiobuttonListforQuestionsNine[1].name}}</label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group mt-4" *ngIf="list.FormInputName.includes('Radio') && list.QuestionOrderId == '13'">
+            <label class="col-12 text-white">Question {{list.QuestionsTypeOrderId}}
+            </label>
+            <label class="col-12 text-white">{{list.Name}}<a class="text-decoration-underline"
+                *ngIf="list.QuestionOrderId == '13'" href="https://join.youfit.com/gyms" target="_blank"> See
+                Map</a></label>
+
+            <div class="col-12">
+              <label class="radio-inline text-white">
+                <input type="radio" name="{{list.QuestionsTypeOrderId}}"
+                  value="{{radiobuttonListforQuestionsSix[4].name}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.visitlocations"
+                  (change)="hideshowQuestionstwelvesubQuestions()">{{radiobuttonListforQuestionsSix[4].name}}
+              </label>
+
+              <label class="radio-inline text-white ms-3">
+                <input type="radio" name="{{list.QuestionsTypeOrderId}}"
+                  value="{{radiobuttonListforQuestionsSix[5].name}}" class="QLACheckBox me-2"
+                  [(ngModel)]="surveyQuestion.visitlocations"
+                  (change)="hideshowQuestionstwelvesubQuestions();">{{radiobuttonListforQuestionsSix[5].name}}
+              </label>
+
+              <div *ngIf="visitlocationsDetail">
+                <label class="col-12 ms-5 mt-2 text-white">{{questionsOneSubQuestions[3].name}}</label>
+                <div class="btn-group p-0 col-lg-8 col-md-8 col-12 ms-5">
+                  <button type="button"
+                    class="mb-3 bg-white input-font-size dropdown-btn btn dropdown-toggle dropdown-toggle-split w-100 text-start py-2 px-3 rounded-2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span *ngIf="clubObj.club_name == '' else ClubFullName" class="sub-dropdown-div">Choose
+                      Club..</span>
+                    <ng-template #ClubFullName>{{ clubObj.club_name }}</ng-template>
+                  </button>
+                  <ul class="dropdown-btn-menu mt-height dropdown-menu w-100 overflow-auto">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        [(ngModel)]="searchClubFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2"
+                      *ngFor="let list of locationList | customeSharedfilter : searchClubFilter; index as i;"
+                      [ngClass]="{ 'active': i == activeClubIndex }" (click)="activeclubSelectedOption(list, i)">
+                      {{ list.club_name }}
+
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button class="btn btn-lg QLA-btn mt-5 px-5 btn-black text-white continue-btn"
+            (click)="saveSurveyDetail(questionWithOption, surveyQuestion, clubObj, salesPersonObj);">
+            <div class="text-center">CONTINUE</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

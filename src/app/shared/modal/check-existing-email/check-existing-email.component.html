@@ -1,0 +1,37 @@
+<div class="modal-body-popup">
+  <div class="modal-header border-bottom p-3">
+      <h4 class="modal-title" class="text-maroon fs-5" id="myModalLabel">This email <span
+              class="text-green">{{checkEmailModelLeadObj.email}}</span> is already in use. Please confirm below.
+      </h4>
+  </div>
+
+  <div class="modal-body">
+      <table class="table">
+          <tr class="border-bottom">
+              <td class="width fw-bold pb-2">First Name :</td>
+              <td class="width fw-bold pb-2">{{checkEmailModelLeadObj.firstname}}</td>
+          </tr>
+          <tr class="border-bottom">
+              <td class="width fw-bold py-2">Last Name :</td>
+              <td class="width fw-bold py-2"> {{checkEmailModelLeadObj.lastname}}</td>
+          </tr>
+          <tr class="border-bottom">
+              <td class="width fw-bold py-2">Email :</td>
+              <td class="width fw-bold py-2">{{checkEmailModelLeadObj.email}}</td>
+          </tr>
+          <tr>
+              <td class="width fw-bold py-2">Phone :</td>
+              <td class="width fw-bold py-2">{{checkEmailModelLeadObj.phone}}</td>
+          </tr>
+      </table>
+  </div>
+
+  <div class="modal-footer">
+      <button type="button" class="btn bg-green text-white"
+          (click)="continueToRedirect(true)">{{yesThisIsMeText}}</button>
+      <button type="button" class="btn bg-maroon text-white"
+      (click)="continueToRedirect(false)">No, this is not me</button>
+  </div>
+</div>
+
+

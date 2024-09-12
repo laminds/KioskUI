@@ -1,0 +1,28 @@
+@media (min-width: 1000px){
+    .container{
+    max-width : 1000px !important;
+}
+}
+.sub-heading{
+    font-size: 18px;
+    font-weight: 500;
+}
+.form-control{
+    border: 2px solid white;
+    background-color: #8c8c8c !important;
+}
+.btn-success{
+    width: 350px;
+    background-color: #1a7a44;
+    padding: 10px;
+    box-shadow: 5px 7px 4px rgb(53, 52, 52);
+}
+
+button .form-control{
+    background-color: #8c8c8c !important;
+    border: 2px solid white !important;
+}
+
+.guest-initial-info-section .sales-person-dropdown-btn-menu {
+    max-height: 250px;
+}

@@ -1,0 +1,22 @@
+export class salesPersonModel {
+    clubNumber: number = 0;
+    clubName: string = '';
+    mode: string = '';
+    moduleName: string = "";
+    sourceName: string = "";
+    childSourceName: string = "";
+    barCode: string = "";
+    empBranchCode: string = "";
+    employeeEmail: string = "";
+    employeeId: number = 0;
+    employeePhone: string = "";
+    employeeStatus: string = "";
+    epFullName: string = "";
+    firstName: string = "";
+    fullName: string = "";
+    lastName: string = "";
+    paychexId: string = "";
+    SPClubNumber: string = ""
+    SPEmployeeId: number = 0;
+    salesPersonMissing: number = 0;
+  }

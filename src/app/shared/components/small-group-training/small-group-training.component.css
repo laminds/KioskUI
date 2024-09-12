@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap');
+
+.text-yellow {
+  color: #f0f365;
+}
+
+.text-shadow {
+  text-shadow: 2px 4px 4px rgba(34, 35, 37, 0.6);
+}
+
+.tax-width {
+  width: 41px;
+}
+
+.tax-text {
+  font-size: 12px;
+}
+
+.fr {
+  font-family: 'Rubik', sans-serif;
+}
+
+.top-card-body-sgt {
+  background-color: #1a7a44;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 50px;
+}
+
+.price-1 {
+  font-size: 72px;
+}
+
+.extrabold {
+  font-weight: 900;
+}
+
+.sub-font-size {
+  font-size: 14px;
+}
+
+.buy-btn {
+  background-color: #F0F365;
+  width: 50%;
+}
+
+.buy-btn:hover,
+.buy-btn:active {
+  background-color: #F0F365 !important;
+}
+
+.skip-plan .btn,
+.skip-plan .btn:hover,
+.skip-plan .btn:active {
+  background: #1a7a44 !important;
+  border-color: #1a7a44 !important;
+}
+
+.nav-item.active a.nav-link {
+  color: #fff !important;
+}
+
+li.nav-item {
+  background-color: #eee;
+  border-radius: 4px;
+  color: #272727;
+  font-size: 18px;
+  height: 45px;
+}
+
+li.nav-item.active {
+  color: #fff !important;
+  background-color: #1a7a44 !important;
+  font-size: 18px;
+  height: 45px;
+}
+
+li.active.nav-item a.nav-link.active {
+  color: white;
+  background-color: #1a7a44;
+}
+
+.nav-link {
+  color: #272727 !important;
+}
+
+.custom-wid ul li {
+  box-shadow: 2px 4px 4px rgb(33 33 33 / 60%) !important;
+}
+
+.fs6 {
+  font-size: 24px;
+}
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .sub-font-size {
+    font-size: 11px;
+  }
+
+  .mt-4x {
+    margin-top: 25px !important;
+  }
+}
+
+.SGT-section .Hideprice {
+  display: none;
+}
+
+.SGT-section .height-div {
+  margin-bottom: 40px;
+  height: 119px;
+  margin-top: 6px;
+}

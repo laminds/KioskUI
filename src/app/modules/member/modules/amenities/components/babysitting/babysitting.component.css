@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap');
+
+.text-yellow {
+  color: #f0f365;
+}
+
+
+.top-card-body-pt{
+  background-color: #1a7a44;
+  border-top-right-radius:10px;
+  border-top-left-radius: 10px;
+  padding: 50px;
+}
+
+.price-1 {
+  font-size: 72px;
+}
+
+.extrabold {
+  font-weight: 900;
+}
+
+.sub-font-size {
+  font-size: 14px;
+}
+
+.buy-btn {
+  background-color: #F0F365;
+  /* padding: 8px 55px 8px 55px; */
+  width: 60%;
+}
+
+.buy-btn:active,
+.buy-btn:hover
+ {
+  background-color: #F0F365 !important;
+}
+.text-shadow {
+  text-shadow: 2px 4px 4px rgba(34, 35, 37, 0.6);
+}
+.tax-text {
+  font-size: 12px;
+}
+.fr {
+  font-family: 'Rubik', sans-serif;
+}
+.fs6 {
+  font-size: 24px;
+}
+.extrabold {
+  font-weight: 900;
+}
+.price-1 {
+  font-size: 80px;
+  font-family: 'Rubik', sans-serif;
+}
+.margin-top-x{
+  margin-top: 125px;;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .sub-font-size {
+      font-size: 11px;
+  }
+}

@@ -1,0 +1,33 @@
+<div class="search-guest-member-page margin-bottom-200 mt-5">
+  <div class="container">
+    <div class="row prospects-section mt-5 ">
+      <h1 class="mt-5 text-white text-center fw-bold">{{foundText}}</h1>
+      <h3 class="text-center text-white mt-3 mb-5">
+        {{foundMessage}}
+      </h3>
+
+      <div class="prospect-list-section mt-3">
+        <div class="row d-flex flex-wrap justify-content-center">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3" *ngFor="let glist of guestList">
+            <div (click)="redirectToSignature(glist)">
+              <div class="user-box text-center rounded-top">
+                <div class="p-4">
+                  <div class="fw-bold">{{ glist.fullName }}</div>
+                  <div class="fw-normal">{{ glist.phoneNumber }}</div>
+                  <div class="fw-normal">{{ glist.email }}</div>
+                  <div class="fw-normal pb-2">Guest</div>
+                </div>
+              </div>
+              <div class="bg-green cursor-pointer p-2 rounded-bottom text-white text-center">
+                <h6 class="mb-0 p-1">{{userFoundText}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      </div>
+
+
+</div>

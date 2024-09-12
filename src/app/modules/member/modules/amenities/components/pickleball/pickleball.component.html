@@ -1,0 +1,149 @@
+<div class="search-guest-member-page">
+  <div class="margin-bottom-200 margin-top-x my-10">
+    <h1 class="mt-5  text-center fw-bold">{{hitext}} <span> {{memberObj.firstName}} </span></h1>
+    <h4 class="text-center fw-bold  mt-4">{{welcomeText}}</h4>
+    <div class="container m-auto">
+      <h5 class="fw-bolder mt-5 max-wid">{{personalInformation}}</h5>
+      <form [formGroup]="pickleballInfoForm" class="bg-form">
+
+        <div class="row form-group">
+          <div class="col-lg-6 mb-3">
+            <input type="text" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="firstName"
+              placeholder="firstname" tabindex="1"
+              [ngClass]="{ 'is-invalid': submitted && form['firstName'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['required']">
+              <sup>*</sup>Please enter first name.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['maxlength']">
+              <sup>*</sup>First name will not be greater than 15 characters.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['pattern']">
+              <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('), hyphens(-), or
+              spaces and must begin with an alpha character.
+            </div>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <input type="text" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="lastName"
+              placeholder="lastname" tabindex="2" [ngClass]="{ 'is-invalid': submitted && form['lastName'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['required']">
+              <sup>*</sup>Please enter last name.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['maxlength']">
+              <sup>*</sup>Last name will not be greater than 15 characters.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['pattern']">
+              <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('), hyphens(-), or
+              spaces and must begin with an alpha character.
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group ">
+          <div class="col-lg-6 mb-3">
+            <input type="email" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="email"
+              placeholder="josh@google.com" tabindex="3"
+              [ngClass]="{ 'is-invalid': submitted && form['email'].errors }" />
+            <div class="invalid-feedback"
+              *ngIf="(submitted && form['email'].errors?.['required']) || (submitted && form['email'].errors?.['pattern'])">
+              <sup>*</sup>Please enter valid email.
+            </div>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <input type="tel" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="phoneNumber"
+              placeholder="(123)-456-7890" tabindex="4" mask="(000) 000-0000"
+              [ngClass]="{ 'is-invalid': submitted && form['phoneNumber'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && form['phoneNumber'].errors?.['required']">
+              <sup>*</sup>Please enter correct phone number.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && form['phoneNumber'].errors?.['pattern']">
+              <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group ">
+          <div class="col-lg-6 mb-3">
+            <input type="text" class="datepicker-text form-control rounded-1 p-2 border border-dark shadow-checkout"
+              placeholder="Date of Birth" formControlName="dob" [maxDate]="today" #datepickerMDY="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                    showClearButton: true, 
+                    clearPosition: 'right', 
+                    showTodayButton: true, 
+                    todayPosition: 'left', 
+                    dateInputFormat: 'MM/DD/YYYY', 
+                    adaptivePosition: true, 
+                    isAnimated: true, 
+                    startView: 'year' 
+                  }" placement="bottom" tabindex="5" [maxDate]="before18year"
+              [ngClass]="{ 'is-invalid': submitted && form['dob'].errors }">
+            <div class="invalid-feedback" *ngIf="submitted && form['dob'].errors?.['required']">
+              <sup>*</sup>Please enter/select birthdate.
+            </div>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <div class="input-group mb-3">
+              <button type="button"
+                class=" border border-dark dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start p-2 rounded-1  radious-2 border border-1 form-control shadow-checkout"
+                data-bs-toggle="dropdown" aria-expanded="false" tabindex="6"
+                [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.gender.errors }">
+                <span *ngIf="!pickleballInfoForm.get('gender')!.value else genderName"
+                  class="dropdown-placeholder-color"> Gender </span>
+                <ng-template #genderName>{{ pickleballInfoForm.get('gender')!.value
+                  }}</ng-template>
+              </button>
+              <ul class="dropdown-menu w-100 overflow-auto">
+                <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i;"
+                  [ngClass]="{ 'active': i == activeIndex }" (click)="activeSelectedGenderOption(list, i)">
+                  {{ list }}
+                </li>
+              </ul>
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="submitted && form.gender.errors?.['required']">
+                <sup>*</sup>Please select gender.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="team-member-info-section">
+            <div class="input-group mb-3">
+              <h5 class="form-label">{{equipmentLabel}}</h5>
+              <div class="p-0 w-100">
+                <button type="button"
+                  class="bg-white border border-dark dropdown-btn btn dropdown-toggle form-control dropdown-toggle-split w-100 text-start p-2 rounded-2 shadow-checkout"
+                  data-bs-toggle="dropdown" aria-expanded="false"
+                  [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.equipmentObj.errors }">
+                  <span *ngIf="!pickleballInfoForm.get('equipmentObj')!.value else fullName"
+                    class="dropdown-placeholder-color">Equipment</span>
+                  <ng-template #fullName>{{ pickleballInfoForm.get('equipmentObj')!.value?.fullName }}</ng-template>
+                </button>
+                <ul class="sales-person-dropdown-btn-menu dropdown-btn-menu dropdown-menu w-100 overflow-auto">
+                  <div class="mx-3 mb-2">
+                    <input type="text" class="filter-text form-control" placeholder="Equipment..."
+                      formControlName="searchFilter" />
+                  </div>
+                  <li class="dropdown-item cursor-pointer py-2"
+                    *ngFor="let list of equipmentList | customMemberFilter : pickleballInfoForm.get('searchFilter')!.value; index as i;"
+                    [ngClass]="{ 'active': i == activeIndex, 'text-danger': list.EquipmentMissing == 1 }"
+                    (click)="activeSelectedOption(list, i)">
+                    {{ list.fullName }}
+                  </li>
+                </ul>
+                <div class="invalid-feedback" *ngIf="submitted && form.equipmentObj.errors?.['required']">
+                  <sup>*</sup>Please select Equipment
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+          <button type="button" (click)="savePickleballDetails(pickleballInfoForm)"
+            class="btn bg-green w-100 text-white shadow-checkout fs-5 py-2">
+            {{continuebtn}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

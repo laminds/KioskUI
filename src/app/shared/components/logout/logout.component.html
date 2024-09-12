@@ -1,0 +1,28 @@
+<div class="logout-section">
+    <div class="logo-section border-bottom border-5 border-bottom-grey">
+      <img class="logo-img d-block mx-auto py-3" src="/assets/images/YouFit-Logo.svg" alt="Image Not Found" />
+    </div>
+  
+    <div class="logout-body-section text-center mt-5">
+      <div class="sign-out-title pt-3">
+        <h2>{{signOut}}</h2>
+      </div>
+  
+      <div class="successfully-title">
+        <h3>{{signOutMessage}}</h3>
+      </div>
+  
+      <div class="login-button-icon mt-5">
+        <div class="login-icon">
+          <div>
+            <a class="icon-clr text-decoration-none text-green cursor-pointer" (click)="login()">
+              <i class="fa fa-sign-in text-green cursor-pointer" aria-hidden="true"></i>
+            </a>
+          </div>
+          <a class="title-clr text-decoration-none text-charcol" (click)="login()">
+            <label class="option-title fs-4 text cursor-pointer">{{loginbtn}}</label>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

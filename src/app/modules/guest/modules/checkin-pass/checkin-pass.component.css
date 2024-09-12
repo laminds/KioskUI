@@ -1,0 +1,30 @@
+
+ .btn-div {
+    width: 300px;
+    height: 70px;
+    font-size: 22px;
+  }
+  
+  .margin-top-div{
+    margin-top: 20%;
+  }
+  
+  .margin-bottom-200 {
+    margin-bottom: 100px !important;
+  }
+
+  .margin-top-200 {
+    margin-top: 120px !important;
+  }
+  
+  @media(max-width: 767px){
+    .line{
+      display: none;
+    }
+    .d-flex{
+      display: grid !important;
+    }
+    .btn-div{
+      font-size: 20px;
+    }
+  }

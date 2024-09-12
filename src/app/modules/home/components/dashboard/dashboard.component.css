@@ -1,0 +1,27 @@
+.club-section.margin-bottom-200 {
+    margin-bottom: 40px;
+  }
+  
+  .club-section .gym-welcome-text {
+    font-size: 45px;
+  }
+  
+  .club-section .clubname {
+    font-size: 22px;
+  }
+  
+  .club-section .dropdown-btn-menu {
+    height: 230px;
+  }
+  .sub-dropdown-div{
+    color: #6c757da8 !important;
+  }
+  .bg-color-dropdown{
+    background-color: #80808017 !important;
+  }
+  .search-div{
+    padding-top: 8px;
+    background-color: white;
+    padding-bottom: 2px;
+  }
+ 

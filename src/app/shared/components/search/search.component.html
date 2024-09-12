@@ -1,0 +1,169 @@
+<div class="search-guest-member-page margin-bottom-200 mt-5">
+
+  <div class="justify-content-center" *ngIf="!leadMemberListSection && !prospectandMemberNotFound">
+    <div class="d-flex flex-column align-items-center">
+      <h1 class="fw-bold text-white text-center mt-5">{{ headingName }}</h1>
+      <div *ngIf="!showMemberGuestView && !showGuestCheckInView" class="mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="564" height="40" viewBox="0 0 564 51" fill="none"
+          class="col-12 ">
+          <g clip-path="url(#clip0_782_2747)">
+            <path
+              d="M0 18.9C0 18.9 339.19 -19.69 536.35 13.41C545.93 15.02 554.58 20.39 559.84 28.57C561.42 31.03 562.62 33.65 563.04 36.27H518.35C518.35 36.27 518.45 38.89 518.95 40.39C519.04 40.67 518.79 40.94 518.51 40.88C512.53 39.63 471.23 31.29 441.93 31.86C441.93 31.86 113.38 29.38 9.1 50.89"
+              fill="#EE4391" />
+          </g>
+          <defs>
+            <clipPath id="clip0_782_2747">
+              <rect width="563.03" height="50.89" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+
+    </div>
+    <div class="mt-3">
+      <p class="fs-4 text-white text-center" id="sub-heading">
+        {{headingType}}
+      </p>
+    </div>
+    <form [formGroup]="searchInfoForm">
+      <div class="col-lg-6 col-md-8 col-sm-12 col-12 m-auto mt-5">
+        <div class="d-flex flex-column container-fluid form-control-div">
+
+          <div class="mb-3">
+            <input type="email" class="form-control rounded-2 border border-3 " formControlName="email"
+              placeholder="hello@youfit.com" tabindex="3" />
+          </div>
+          <div class="mb-3 text-white text-center">
+            <label>-- OR --</label>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control rounded-2 border border-3 border-white" formControlName="phoneNumber"
+              placeholder="(555)-555-5555" tabindex="4" mask="(000) 000-0000" />
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-6 col-12 m-auto mt-4">
+            <button type="button" class="btn bg-green w-100 px-2 py-2  text-white border-1 shadow-color"
+              (click)="searchContacts(searchInfoForm)">
+              {{searchbtn}}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="leadMemberListSection && !prospectandMemberNotFound">
+    <div class="container">
+      <div class="row prospects-section mt-5 ">
+        <h1 class="mt-5 text-white text-center fw-bold">{{foundText}}</h1>
+        <h3 class="text-center text-white mt-3 mb-5">
+          {{foundMessage}}
+        </h3>
+        <div class="prospect-list-section">
+          <div class="row d-flex flex-wrap justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3" *ngFor="let mlist of memberList">
+              <div class="member-box text-center rounded-2 same-div shadow-color"
+                (click)="redirectToMemberModule(mlist, checkEmailPopup)">
+                <div class="p-3" style="min-height: 128px;">
+                  <div class="fw-bold">{{ mlist.fullName }}</div>
+                  <div class="fw-normal">{{ mlist.phoneNumber }}</div>
+                  <div class="fw-normal">{{ mlist.email }}</div>
+                  <div class="fw-normal">{{ mlist.memberStatus }}</div>
+                  <!-- <div class="fw-normal pb-2">Member</div> -->
+                </div>
+                <div class="bg-green p-2 rounded-bottom text-white">
+                  <h6 class="mb-0 p-1">{{userCardText}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="guestList.length > 0 && memberList.length > 0">
+          <hr class="text-white my-4">
+        </div>
+
+  
+          <div class="prospect-list-section mt-3">
+            <div class="row d-flex flex-wrap justify-content-center">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3" *ngFor="let glist of guestList">
+                <div class="user-box text-center rounded-2 same-div shadow-color"
+                  (click)="redirectToCheckIn(glist, checkEmailPopup)">
+                  <div class="p-3" style="min-height: 128px;">
+                    <div class="fw-bold">{{ glist.fullName }}</div>
+                    <div class="fw-normal">{{ glist.phoneNumber }}</div>
+                    <div class="fw-normal">{{ glist.email }}</div>
+                    <div class="fw-normal">Guest</div>
+                  </div>
+                  <div class="bg-green cursor-pointer p-2 rounded-bottom text-white text-center">
+                    <h6 class="mb-0 p-1">{{userCardText}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div *ngIf="memberList.length >= 1 && showMemberGuestView"
+          class="reg-div col-lg-6 col-md-6 col-sm-6 m-auto col-12 mb-4 user-out-div text-center border border-0 fw-bolder p-2  rounded-1 cursor-pointer shadow-color"
+          (click)="redirectRegisterModule(searchInfoForm)">
+          Not you? Let's try again!
+        </div>
+
+        <div *ngIf="(memberList.length >= 1 || guestList.length >= 1) && !showMemberGuestView"
+          class="reg-div col-lg-6 col-md-6 col-sm-6 m-auto col-12 mb-4 user-out-div text-center border border-0 fw-bolder p-2  rounded-1 cursor-pointer shadow-color">
+          <div (click)="redirectRegisterModule(searchInfoForm)">
+            {{userFoundText}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="prospect-list-section mt-5" *ngIf="prospectandMemberNotFound">
+    <div class="row d-flex flex-wrap justify-content-center">
+      <h1 class="mt-5 text-white text-center fw-bold">{{headingName}}</h1>
+      <h3 class="text-center text-white mt-3">
+        {{notFoundText}}
+      </h3>
+      <h3 class="text-center text-white">
+        {{eachOtherText}}
+      </h3>
+
+      <div class="col-lg-4 col-md-6 col-sm-8 col-10 mb-3 mt-4">
+        <div class="text-center border border-0 fs-5 p-2 py-2 mt-3 text-white bg-green rounded-1 cursor-pointer shadow-color"
+          (click)="redirectSearchModule()">
+          {{goback}}
+        </div>
+        <div class="user-out-div-search text-center border border-0 fw-bolder p-2 mt-3 rounded-1 cursor-pointer shadow-color"
+          (click)="redirectRegisterModule(searchInfoForm)">
+          {{userNotFoundText}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #checkEmailPopup>
+  <div class="modal-header member-search-model">
+    <h5>Please Enter your email:</h5>
+    <button type="button" class="btn-close shadow-none close" aria-label="Close" (click)="closeModalPopup()"></button>
+  </div>
+  <div class="modal-body margin-top-10 checkemail">
+    <div class="row col-sm-12 ms-1">
+      <div class="form-group margin-bottom-30">
+        <label class="fs-5">Email:</label>
+        <input type="email" class="form-control" [(ngModel)]="checkemail">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer email-submit-div">
+    <div class="col-12">
+      <div class="input-button-box text-center">
+        <button class="text-white bg-green email-submit" (click)="upsertInHS(checkemail)"
+          data-dismiss="modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,27 @@
+<div class="wrapper margin-bottom-200 margin-top-100" *ngIf="silverPlans.length > 0">
+    <div>
+      <h1 class="text-center mb-3"><span style="color: white;">Hi Josh</span></h1>
+      <p class="text-center font-header"><span style="color: white;">Select the plan you want to sign up for below</span></p>
+    </div>
+    {{silverPlans.length}}
+    <div class="d-flex gap-2 justify-content-center mb-5 flex-wrap margin-top-50">
+     
+    </div>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+     
+    </div>
+  </div>
+  
+
+  <div class="wrapper margin-bottom-200 margin-top-100"  *ngIf="silverPlans.length == 0">
+    <div>
+      <p class="text-center font-header"><span style="color: white;">No Silver Plans Found !!</span></p>
+    </div>
+    <div class="d-flex gap-2 justify-content-center mb-5 flex-wrap margin-top-50" *ngIf="silverPlans.length == 0">
+     
+    </div>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+     
+    </div>
+  </div>
+  

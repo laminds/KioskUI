@@ -1,0 +1,15 @@
+<div class="modal-header border-bottom-0">
+  <button type="button" class="btn-close shadow-none" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<div class="px-3 pb-2">
+  <div class="row">
+    <label class="text-danger  text-center">
+      Invalid Option due to no guest pass associated with the information provided or an already activated and expired
+      guest pass found with the information provided
+    </label>
+  </div>
+</div>
+<div class="modal-footer justify-content-center py-3 gap-3">
+  <button type="button" class="btn bg-green text-white" (click)="redirectToJoin()">Join Now</button>
+  <button type="button" class="btn bg-green text-white" (click)="redirectToBuyPass()">Buy a Pass</button>
+</div>

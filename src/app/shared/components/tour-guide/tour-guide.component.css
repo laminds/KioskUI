@@ -1,0 +1,58 @@
+
+.tour-guide-section .recap-section,
+.tour-guide-section .tour-guide-header-sticky {
+  border-end-end-radius: 0px !important;
+  border-end-start-radius: 0px !important;
+}
+
+.tour-guide-section .key-features-section:last-child {
+  border-start-start-radius: 0px !important;
+  border-start-end-radius: 0px !important;
+}
+
+.tour-guide-section .key-features-ans-title {
+  font-family: 'Rubik-Regular';
+}
+
+.tour-guide-section .tour-guide-header-title-text {
+  height: 92px;
+}
+
+.tour-guide-section .key-features-title-div {
+  height: 160px;
+}
+
+.tour-guide-section .indoor-court-span {
+  font-family: initial;
+}
+
+.tour-guide-section .tour-guide-summary-section {
+  border: 1px solid #B3CBAA !important;
+  background-color: #ECECEC;
+  border-radius: 12px;
+  margin-top: 47px;
+}
+
+@media (max-width: 1199px) {
+  .key-features-title-text {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .key-features-title-text {
+    font-size: 13px !important;
+  }
+  .header-div h5{
+      font-size: 1rem;
+  }
+}
+@media (max-width: 767px) {
+  .key-features-title-text {
+    font-size: 11px !important;
+  }
+
+  .tour-guide-header-title-text{
+    font-size: 12px;
+  }
+}

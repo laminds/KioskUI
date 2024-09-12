@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap');
+
+.text-yellow {
+  color: #f0f365;
+}
+
+.fr {
+  font-family: 'Rubik', sans-serif;
+}
+
+.fs6 {
+  font-size: 24px;
+}
+
+
+.top-card-body-pt {
+  background-color: #1a7a44;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 50px;
+}
+
+.text-shadow {
+  text-shadow: 2px 4px 4px rgba(34, 35, 37, 0.6);
+}
+
+.tax-width {
+  width: 41px;
+}
+
+.tax-text {
+  font-size: 12px;
+}
+
+.price-1 {
+  font-size: 84px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.extrabold {
+  font-weight: 900;
+}
+
+.sub-font-size {
+  font-size: 14px;
+}
+
+.buy-btn {
+  background-color: #F0F365;
+  /* padding: 8px 55px 8px 55px; */
+  width: 50%;
+}
+
+.buy-btn:active,
+.buy-btn:hover {
+  background-color: #F0F365 !important;
+}
+
+
+.nav-item.active a.nav-link {
+  color: #fff !important;
+}
+
+li.nav-item {
+  text-transform: uppercase;
+  background-color: #eee;
+  border-radius: 4px;
+  color: #272727;
+  /* height: 45px; */
+  font-size: 18px;
+}
+
+li.nav-item.active {
+  color: #fff !important;
+  background-color: #1a7a44 !important;
+  /* height: 45px; */
+  font-size: 18px;
+}
+
+ul.nav.nav-pills {
+  display: flex;
+  gap: 10px;
+}
+
+li.active.nav-item a.nav-link.active {
+  color: white;
+  background-color: #1a7a44;
+}
+
+.nav-link {
+  color: #272727 !important;
+}
+
+
+@media (min-width: 992px) {
+  .membership-ptplan-main-section .col-lg-6 {
+    flex: 0 0 auto;
+    width: 47%;
+  }
+}
+
+@media (min-width: 768px) {
+  .membership-ptplan-main-section .col-md-6 {
+    flex: 0 0 auto;
+    width: 46%;
+  }
+}
+
+.shadow-color ul li {
+  box-shadow: 2px 4px 4px rgb(33 33 33 / 60%) !important;
+}
+
+.no-wrap ul.nav.nav-pills {
+  flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 991px) {
+  .no-wrap ul.nav.nav-pills {
+    flex-wrap: wrap;
+  }
+
+  .sub-font-size {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .mtp-4x {
+    margin-top: 25px !important;
+  }
+
+  /* .mt-1{
+      margin-top: 15px !important;
+  } */
+  .mb-4x {
+    margin-bottom: 5px !important;
+  }
+
+  /* .sub-font-size {
+      font-size: 11px;
+  } */
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .plan-height {
+    height: 55px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .sub-font-size {
+    font-size: 11px;
+  }
+
+  .mtp-4x {
+    margin-top: 25px !important;
+  }
+}
+
+
+@media only screen and (min-device-width: 820px) and (max-device-width: 1199px) {
+  .no-wrap ul.nav.nav-pills {
+    flex-wrap: wrap !important;
+  }
+}
+
+.pt-div .Hideprice {
+  display: none;
+}
+
+.pt-div .height-div {
+  margin-bottom: 40px;
+  height: 119px;
+  margin-top: 6px;
+}

@@ -1,0 +1,224 @@
+<div class="container search-guest-member-page margin-bottom-200">
+    <div class="mt-8">
+        <h1 class="fw-bold text-white text-center ">{{welcomeText}}</h1>
+    </div>
+    <div>
+        <p class="fs-5 fw-bold text-white text-center" id="sub-heading">
+            {{subHeading}}
+        </p>
+        <!-- <div>
+            <label class="form-label text-white fs-5 mt-2">{{profileinfo}}</label>
+        </div> -->
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-5">
+        <div class="search-guest-member-section form-control-div" [formGroup]="newUserInfoForm">
+            <!-- <div class="container col-md-12 col-sm-12 col-12 "> -->
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2" placeholder="First Name"
+                            formControlName="firstName"
+                            [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }"  tabindex="1">
+                        <!-- error block -->
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['required']">
+                            <sup>*</sup>Please enter first name.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['maxlength']">
+                            <sup>*</sup>First name will not be greater than 15 characters.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.firstName.errors?.['pattern']">
+                            <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('),
+                            hyphens(-), or
+                            spaces and must begin with an alpha character.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2" placeholder="Last Name"
+                            formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }"  tabindex="2">
+                        <!-- error block -->
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['required']">
+                            <sup>*</sup>Please enter last name.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['maxlength']">
+                            <sup>*</sup>Last name will not be greater than 15 characters.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.lastName.errors?.['pattern']">
+                            <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('),
+                            hyphens(-), or
+                            spaces and must begin with an alpha character.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2" placeholder="Email Address"
+                            [ngClass]="{ 'is-invalid': submitted && form.email.errors }" formControlName="email"
+                            (blur)="validateContactEmail(newUserInfoForm)"  tabindex="3">
+                        <!-- error block -->
+                        <div class="invalid-feedback" *ngIf="(submitted && form.email.errors?.['required']) || 
+                        (submitted && form.email.errors?.['pattern'])">
+                            <sup>*</sup>Please enter valid email.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2" placeholder="Phone Number"
+                            maxlength="14" [ngClass]="{ 'is-invalid': submitted && form.phoneNumber.errors}"
+                            formControlName="phoneNumber" mask="(000) 000-0000"  tabindex="4">
+                        <!-- error block -->
+                        <div class="invalid-feedback" *ngIf="submitted  && form.phoneNumber.errors?.['required']">
+                            <sup>*</sup>Please enter correct phone number.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.phoneNumber.errors?.['pattern']">
+                            <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="datepicker-text form-control radious-2 border border-2 p-2 FieldDOB"
+                            placeholder="Date of Birth" formControlName="DOB" (keydown)="preventTextInput($event)"  [maxDate]="today" #datepickerMDY="bsDatepicker" bsDatepicker
+                            [bsConfig]="{ 
+                              showClearButton: true, 
+                              clearPosition: 'right', 
+                              showTodayButton: true, 
+                              todayPosition: 'left', 
+                              dateInputFormat: 'MM/DD/YYYY', 
+                              adaptivePosition: true, 
+                              isAnimated: true, 
+                              startView: 'year' 
+                            }" placement="bottom"  tabindex="5"
+                            [ngClass]="{ 'is-invalid': submitted && form.DOB.errors}">
+
+                        <!-- error block -->
+
+                        <div class="invalid-feedback" *ngIf="submitted && form.DOB.errors?.['required']">
+                            <sup>*</sup>Please enter/select birthdate.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitted && form.DOB.errors?.['checkMinors']">
+                            <sup>*</sup>We do not allow minors to join online. Please come visit us in person.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <div class="input-group mb-3">
+                        <button type="button"
+                            class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start p-2 rounded-1  radious-2 border border-2 form-control"
+                            data-bs-toggle="dropdown" aria-expanded="false" tabindex="6"
+                            [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.gender.errors }">
+                            <span *ngIf="!newUserInfoForm.get('gender')!.value else genderName"
+                                class="dropdown-placeholder-color"> Gender </span>
+                            <ng-template #genderName>{{ newUserInfoForm.get('gender')!.value
+                                }}</ng-template>
+                        </button>
+                        <ul class="dropdown-menu w-100 overflow-auto">
+                            <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i;"
+                                [ngClass]="{ 'active': i == activeIndex }"
+                                (click)="activeSelectedGenderOption(list, i)">
+                                {{ list }}
+                            </li>
+                        </ul>
+                        <!-- error block -->
+                        <div class="invalid-feedback" *ngIf="submitted && form.gender.errors?.['required']">
+                            <sup>*</sup>Please select gender.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <label class="form-label text-white fs-5">{{teamMemberLabel}}</label>
+                    <div class="input-group mb-3 input-font-size">
+                        <button type="button"
+                            class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow"
+                            data-bs-toggle="dropdown" aria-expanded="false" tabindex="6"
+                            [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.salesPersonObj.errors }">
+                            <span
+                                *ngIf="newUserInfoForm.get('salesPersonObj')!.value == null else fullName"
+                                class="dropdown-placeholder-color">
+                                Team Member Name</span>
+                            <ng-template #fullName>{{
+                                newUserInfoForm.get('salesPersonObj')!.value?.fullName
+                                }}</ng-template>
+                        </button>
+                        <ul class="dropdown-btn-menu dropdown-menu w-100 pt-0 overflow-auto dropdown-height search-div sticky-top">
+                            <div class="mx-3 mb-2">
+                                <input type="text" class="filter-text form-control" placeholder="Search..."
+                                    formControlName="searchFilter" />
+                            </div>
+                            <li class="dropdown-item cursor-pointer py-2"
+                                *ngFor="let list of salesPersonList | customeSharedfilter: newUserInfoForm.get('searchFilter')!.value; index as i;"
+                                [ngClass]="{ 'active': i == activeIndex }"
+                                (click)="activeSelectedOption(list, i)">
+                                {{ list.fullName }}
+                            </li>
+                        </ul>
+                        error block 
+                        <div class="invalid-feedback"
+                            *ngIf="submitted && form.salesPersonObj.errors?.['required']">
+                            <sup>*</sup>Please select team member
+                        </div>
+                    </div>
+                </div>
+   
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                    <label class="form-label text-white fs-5 fw-normal">{{referredbyLabel}}</label>
+                    <div class="input-group mb-2 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2"
+                            placeholder="I heard about you from..." maxlength="14"
+                            [ngClass]="{ 'is-invalid': submitted && form.hearAbout.errors}" formControlName="hearAbout">
+                        <div class="invalid-feedback" *ngIf="submitted  && form.hearAbout.errors?.['required']">
+                            <sup>*</sup>Please enter Referred by
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="row mb-3">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
+                    <label class="form-label text-white fs-5">{{goalsLabel}}</label>
+                    <div class="input-group mb-3 input-font-size">
+                        <input type="tel" class="form-control radious-2 border border-2"
+                            placeholder="Select option..." maxlength="14"
+                            [ngClass]="{ 'is-invalid': submitted && form.goalInterests.errors}"
+                            formControlName="goalInterests">
+                        <div class="invalid-feedback" *ngIf="submitted  && form.goalInterests.errors?.['required']">
+                            <sup>*</sup>Please select option
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- </div> -->
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+                <button type="button" (click)="saveNewContact(newUserInfoForm,birthDatevalidationModel)" class="btn bg-green w-100 text-white">
+                    {{continuebtn}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #birthDatevalidationModel>   
+    <div class="p-4 modal-body">
+        <div class="row">
+            <h5 class="text-center">
+                Needs Parent Signature
+            </h5>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn text-white f-end bg-green" (click)="redirectToMinorSign()">Signature</button>
+        <button type="button" class="btn text-white f-end bg-maroon" (click)="closeModalPopup()">Close</button>
+    </div>
+</ng-template>

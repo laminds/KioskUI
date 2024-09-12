@@ -1,0 +1,13 @@
+
+.user-box {
+  box-shadow: 8px 8px 9px rgba(39, 39, 39, 0.6);
+  cursor: pointer;
+  background: #ECECEC;
+  min-height: 128px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}

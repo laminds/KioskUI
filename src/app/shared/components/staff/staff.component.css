@@ -1,0 +1,121 @@
+.main-section {
+  min-height: calc(100vh - 88px);
+}
+
+.margin-bottom-200 {
+  margin-bottom: 125px;
+}
+
+.staff .form-control {
+  height: auto;
+}
+
+.staff .vl-grid-section {
+  max-height: 600px;
+}
+
+.staff .highlight-row-prospect,
+.staff .highlight-row-prospect td {
+  background-color: #bab9dc;
+}
+
+.staff .highlight-row-limecard-guest,
+.staff .highlight-row-limecard-guest td {
+  background-color: #ffecec;
+}
+
+.staff .highlight-row-FormerMember,
+.staff .highlight-row-FormerMember td {
+  background-color: #dbecf3;
+}
+
+.staff .highlight-row-DataTrakMember,
+.staff .highlight-row-DataTrakMember td {
+  background-color: #B3CBAA3b;
+}
+
+.staff .highlight-row-ClassPass,
+.staff .highlight-row-ClassPass td {
+  background-color: #e6ffff;
+}
+
+.staff .highlight-row-GuestfortheDay,
+.staff .highlight-row-GuestfortheDay td {
+  background-color: #ffe0b3;
+}
+
+.staff .highlight-row-ThreeDayPass,
+.staff .highlight-row-ThreeDayPass td {
+  background-color: #c4c456;
+}
+
+.staff .highlight-border-RFC,
+.staff .highlight-border-RFC td {
+  color: #FF0000;
+}
+
+.staff .badge.highlight-border-RFC {
+  background-color: #ffffff;
+  padding: 3px 3px !important;
+}
+
+.staff .highlight-row-PickleBall,
+.staff .highlight-row-PickleBall td {
+  background-color: #ffefbf;
+}
+
+.staff .highlight-row-TotSpot,
+.staff .highlight-row-TotSpot td {
+  background-color: #ffbff038;
+}
+
+.staff  .highlight-row-OpenHouse,
+.staff .highlight-row-OpenHouse td  {
+  background-color: #ffc8c8;
+}
+
+.staff .vl-table-header {
+  z-index: 1;
+}
+
+.staff .vl-grid-section .table a:hover {
+  color: var(--arugula-color);
+}
+
+.staff .phone-number-section {
+  min-width: 119px;
+}
+
+.staff .tableSepration {
+  border-bottom: 4px solid #272727;
+}
+
+.staff .form-grid-section {
+  background-color: #F3F3F3;
+}
+
+.staff .vl-border-section {
+  border-color: #1a7a44 !important;
+}
+
+.staff .fun-btn-section {
+  min-width: 98px;
+}
+
+.tab-text {
+  font-size: 0.8rem !important;
+}
+
+@media(max-width: 991px) and (min-width: 768px) {
+  .col-md-2 {
+    flex: 0 0 auto;
+    width: 50.666667%;
+  }
+}
+
+@media(max-width: 767px) {
+  .form-grid-section .mt-3 {
+    margin-top: 0rem !important;
+    margin-bottom: 8px !important;
+}
+}

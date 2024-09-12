@@ -1,0 +1,105 @@
+<div class="margin-bottom-200 guest-initial-info-section">
+    <!-- title -->
+    <div class="title-text  mt-5 ">
+        <h1 class="text-white text-center fw-bolder max-wid">{{hitext}} {{regObj.firstName}}</h1>
+        <h4 class="text-white text-center fw-normal max-wid">{{headerText}}</h4>
+    </div>
+    <!-- form-section -->
+    <!-- <form action=""> -->
+    <div class="container m-auto">
+        <!-- genral information section -->
+      
+            <h5 class="text-white fw-bolder mt-5 max-wid">{{generalInfo}}</h5>
+            <p class="text-white sub-heading mt-3  max-wid">{{profileInfo}}</p>
+            <form [formGroup]="initialInfoForm">
+                <div class="row form-group">
+                    <div class="col-lg-6 mb-3">
+                        <input type="text" class="form-control rounded-2" formControlName="firstName"
+                            placeholder="firstname" tabindex="1" />
+                    </div>
+                    <div class="col-lg-6 mb-3"> 
+                        <input type="text" class="form-control rounded-2" formControlName="lastName"
+                            placeholder="lastname" tabindex="2" />
+                    </div>
+                </div>
+                <div class="row form-group ">
+                    <div class="col-lg-6 mb-3">
+                        <input type="email" class="form-control rounded-2" formControlName="email"
+                            placeholder="josh@google.com" tabindex="3" />
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <input type="tel" class="form-control rounded-2" formControlName="phoneNumber"
+                            placeholder="(123)-456-7890" tabindex="4" />
+                    </div>
+                </div>
+                <div class="row form-group ">
+                    <div class="col-lg-6 mb-3">
+                        <input type="text" class="datepicker-text form-control rounded-1 p-2 FieldDOB"
+                            placeholder="Date of Birth" formControlName="dob" [maxDate]="today" #datepickerMDY="bsDatepicker" bsDatepicker
+                            [bsConfig]="{ 
+                              showClearButton: true, 
+                              clearPosition: 'right', 
+                              showTodayButton: true, 
+                              todayPosition: 'left', 
+                              dateInputFormat: 'MM/DD/YYYY', 
+                              adaptivePosition: true, 
+                              isAnimated: true, 
+                              startView: 'year' 
+                            }" placement="bottom" tabindex="5">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="btn-group flex-column p-0 w-100">
+                            <button type="button"
+                              class="dropdown-btn btn bg-white dropdown-toggle form-control dropdown-toggle-split w-100 text-start p-2 rounded-2"
+                              data-bs-toggle="dropdown" aria-expanded="false" >
+                              <span *ngIf="regObj.gender == null else genderName" class="dropdown-placeholder-color">Choose a
+                                gender...</span>
+                              <ng-template #genderName>{{ regObj.gender }}</ng-template>
+                            </button>
+                            <ul class="dropdown-btn-menu dropdown-menu w-100 overflow-auto">
+                              <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i;"
+                                [ngClass]="{ 'active': i == activeIndex }" (click)="activeSelectedGenderOption(list, i)">
+                                {{ list }}
+                              </li>
+                            </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="row form-group">
+                    <div class="team-member-info-section">
+                        <div class="mb-2">
+                          <h5 class="form-label text-white">{{teamMemberLabel}}</h5>
+                          <div class="btn-group p-0 w-100">
+                            <button type="button"
+                              class="mb-3 bg-white dropdown-btn btn dropdown-toggle form-control dropdown-toggle-split w-100 text-start p-2 rounded-2"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                              <span *ngIf="!initialInfoForm.get('salesPersonObj')!.value else FullName" class="dropdown-placeholder-color">Team Member</span>
+                              <ng-template #FullName>{{ initialInfoForm.get('salesPersonObj')!.value?.fullName }}</ng-template>
+                            </button>
+                            <ul class="sales-person-dropdown-btn-menu dropdown-btn-menu dropdown-menu w-100 overflow-auto">
+                              <div class="mx-3 mb-2">
+                                <input type="text" class="filter-text form-control" placeholder="Search..."
+                                  formControlName="searchFilter" />
+                              </div>
+                              <li class="dropdown-item cursor-pointer py-2"
+                                *ngFor="let list of salesPersonList | customeSharedfilter : initialInfoForm.get('searchFilter')!.value; index as i;"
+                                [ngClass]="{ 'active': i == activeIndex, 'text-danger': list.salesPersonMissing == 1 }"
+                                (click)="openMissingSalesPersonModal(list); activeSelectedOption(list, i)">
+                                {{ list.fullName }}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </form>
+            <!-- payment information section -->
+            <div class="custom-container m-auto">
+                <h5 class="text-white fw-bolder mt-3">{{paymentInfo}}</h5>
+                <p class="text-white sub-heading mt-3 ">{{paymentDetails}}</p>
+                <div class="d-flex gap-3 justify-content-start flex-wrap">
+                    <button type="button" class="btn btn-success rounded-2" (click)="redirectToCheckout()">{{paymentbtn}}</button>
+                    <!-- <button type="button" class="btn btn-success">Complete on Personal Device</button> -->
+                </div>
+            </div>
+    </div>

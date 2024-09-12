@@ -1,0 +1,13 @@
+.btn-div {
+  width: 300px;
+  font-size: 24px;
+}
+
+@media(max-width: 767px){
+  .d-flex{
+    display: grid !important;
+  }
+  .btn-div{
+    font-size: 20px;
+  }
+}

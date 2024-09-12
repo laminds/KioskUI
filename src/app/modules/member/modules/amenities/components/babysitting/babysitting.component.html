@@ -1,0 +1,26 @@
+<div class="margin-bottom-200 tot-spot-babysitting-div margin-top-x">
+  <h1 class="mt-5  text-center fw-bold text-white">{{hitext}} <span> {{memberObj.firstName}} </span></h1>
+  <h4 class="text-center text-white fw-bold  mt-4">{{welcomeText}}</h4>
+
+  <div class="row d-flex justify-content-center gap-4 mt-5">
+    <div *ngFor="let plan of ChildList, index as i"
+      class="top-card-body-pt rounded-3 justify-content-center p-4 col-lg-4 col-md-6 col-sm-6 col-12 shadow-color">
+      <div class="text-center text-yellow fs-3 fw-bold text-uppercase">{{plan.name}}</div>
+      <div class="d-flex justify-content-center align-items-center gap-2">
+        <div>
+          <div class="text-white d-flex gap-1">
+            <div class="fs6 extrabold mt-4 text-shadow fr">{{dollarSign}}</div>
+            <div class="price-1 extrabold text-shadow">{{plan.value}}</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center mb-3 mt-1">
+          <div class="text-white extrabold fs-4 text-shadow fr">.00</div>
+          <div class="text-white tax text-shadow tax-text">{{planValueText}}</div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-2 mb-2">
+        <button type="button" (click)="babysittingPlanSelection(plan)" class="btn buy-btn fw-bolder fs-5">{{buyNowbtn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

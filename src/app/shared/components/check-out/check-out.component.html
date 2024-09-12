@@ -1,0 +1,1917 @@
+<div id="checkOut" class="guest-signature-page margin-bottom-200 margin-top-200 margin-b-200 margin-t-200"
+  [formGroup]="InitialCheckOutForm">
+  <div class="container">
+    <div class="col-sm-12 signature-body">
+      <div class="text-center signature-heading">
+        <h1 class="text-center fw-bolder">{{ headerText }}</h1>
+        <h4 class="mt-2 text-center fw-normal">{{ subHeaderText }}</h4>
+      </div>
+
+      <div class="m-auto">
+        <div class="bg-form col-lg-12 col-md-12 col-sm-12 col-12 mt-5" formGroupName="personalInformation">
+          <p class="fs-5 mt-4 fw-bold">{{ PIText }}</p>
+          <div class="justify-content-center">
+            <div class="row mb-1">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input id="RGFirstName" type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="First Name" formControlName="firstName" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.firstName.errors
+                    }" tabindex="1" />
+                  <!-- error block -->
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.firstName.errors?.['required']">
+                    <sup>*</sup>Please enter first name.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.firstName.errors?.['maxlength']">
+                    <sup>*</sup>First name will not be greater than 15
+                    characters.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.firstName.errors?.['pattern']">
+                    <sup>*</sup>First name should allow only alphanumeric
+                    characters, apostrophes('), hyphens(-), or spaces and must
+                    begin with an alpha character.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input id="RGLastName" type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Last Name" formControlName="lastName" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.lastName.errors
+                    }" tabindex="2" />
+                  <!-- error block -->
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.lastName.errors?.['required']">
+                    <sup>*</sup>Please enter last name.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.lastName.errors?.['maxlength']">
+                    <sup>*</sup>Last name will not be greater than 15
+                    characters.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.lastName.errors?.['pattern']">
+                    <sup>*</sup>Last name should allow only alphanumeric
+                    characters, apostrophes('), hyphens(-), or spaces and must
+                    begin with an alpha character.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input id="RGEmail" type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Email Address" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.email.errors
+                    }" formControlName="email" tabindex="3" />
+                  <!-- error block -->
+                  <div class="invalid-feedback" *ngIf="(submitted && form.personalInformation.controls.email.errors?.['required']) || 
+                                    (submitted && form.personalInformation.controls.email.errors?.['pattern'])">
+                    <sup>*</sup>Please enter valid email.
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input id="RGPhoneNo" type="tel" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Phone Number" maxlength="14" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.phoneNumber.errors
+                    }" formControlName="phoneNumber" mask="(000) 000-0000" tabindex="4" />
+                  <!-- error block -->
+                  <div class="invalid-feedback"
+                    *ngIf="submitted  && form.personalInformation.controls.phoneNumber.errors?.['required']">
+                    <sup>*</sup>Please enter correct phone number.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.phoneNumber.errors?.['pattern']">
+                    <sup>*</sup>Please enter 10 digits for your phone number
+                    (i.e. (987) 654-3210).
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text"
+                    class="datepicker-text FieldDOB form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Date of Birth" [maxDate]="today" formControlName="DOB" #datepickerMDY="bsDatepicker"
+                    bsDatepicker [bsConfig]="{
+                      showClearButton: true,
+                      clearPosition: 'right',
+                      showTodayButton: true,
+                      todayPosition: 'left',
+                      dateInputFormat: 'MM/DD/YYYY',
+                      adaptivePosition: true,
+                      isAnimated: true,
+                      startView: 'year'
+                    }" placement="bottom" [maxDate]="before12year" tabindex="5" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.DOB.errors
+                    }" />
+
+                  <!-- error block -->
+
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.DOB.errors?.['required']">
+                    <sup>*</sup>Please enter/select birthdate.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.DOB.errors?.['checkMinors']">
+                    <sup>*</sup>We do not allow minors to join online. Please
+                    come visit us in person.
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" tabindex="6" [ngClass]="{
+                      'is-dropdown-invalid is-invalid':
+                        submitted &&
+                        form.personalInformation.controls.gender.errors
+                    }" disabled>
+                    <span *ngIf="
+                        !form.personalInformation.get('gender')!.value;
+                        else genderName
+                      " class="dropdown-placeholder-color">
+                      Gender
+                    </span>
+                    <ng-template #genderName>{{
+                      form.personalInformation.get("gender")!.value
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto">
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i"
+                      [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedGenderOption(list, i)">
+                      {{ list }}
+                    </li>
+                  </ul>
+                  <!-- error block -->
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.gender.errors?.['required']">
+                    <sup>*</sup>Please select gender.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
+                <label>Is there a team member helping you?</label>
+                <div class="input-group mb-3 mt-2 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" tabindex="7" [ngClass]="{
+                          'is-dropdown-invalid is-invalid':
+                            submitted && form.personalInformation.controls.salesPersonObj.errors
+                        }">
+                    <span *ngIf="
+                            InitialCheckOutForm.get('personalInformation.salesPersonObj')!
+                              .value == null;
+                            else FullName  
+                          " class="dropdown-placeholder-color">
+                      Choose Sales Person..</span>
+                    <ng-template #FullName>{{
+                      InitialCheckOutForm.get("personalInformation.salesPersonObj")!.value?.fullName }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                            let list of salesPersonList
+                            | customeSharedfilter
+                            : InitialCheckOutForm.get(
+                                'personalInformation.searchFilter'
+                              )!.value;
+                            index as i
+                          " [ngClass]="{ active: i == activeIndex,'text-danger': list.salesPersonMissing == 1 }"
+                      (click)="oepnMissingSalesPersonModal(list); activeSelectedSalesPersonOption(list, i)">
+                      {{list.fullName}}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.personalInformation.controls.salesPersonObj.errors?.['required']">
+                    <sup>*</sup>Please select team member.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-form col-lg-12 col-md-12 col-sm-12 col-12 mt-5" formGroupName="billingInfo">
+          <h5 class="fw-bolder mt-3">{{ paymentInfoText }}</h5>
+          <p class="mt-2">{{ billingInfoText }}</p>
+          <div class="justify-content-center">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text" class="form-control rounded-1 border border-dark shadow-checkout myadreesRef"
+                    placeholder="Street Address" formControlName="address" [ngClass]="{
+                      'is-invalid':
+                        submitted && form.billingInfo.controls.address.errors,'focus':submitted && form.billingInfo.controls.address.errors
+                    }" tabindex="8" #myadreesRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.address.errors?.['required']">
+                    <sup>*</sup>Please enter Address.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input class="form-control rounded-1 border border-dark p-2 shadow-checkout" type="text"
+                    placeholder="City" maxlength="24" tabindex="9" formControlName="city" [ngClass]="{
+                      'is-invalid':
+                        submitted && form.billingInfo.controls.city.errors,'focus':submitted && form.billingInfo.controls.city.errors
+                    }" #myCityRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.city.errors?.['required']">
+                    <sup>*</sup>Please enter city
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.city.errors?.['maxlength']">
+                    <sup>*</sup>city name will not be greater than 24 characters
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && form.billingInfo.controls.city.errors?.['pattern']">
+                    <sup>*</sup>City name will allow only alphanumeric
+                    characters(spaces, dashes, and apostrophes are allowed to
+                    separate)
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" tabindex="10" [ngClass]="{
+                      'is-dropdown-invalid is-invalid':
+                        submitted && form.billingInfo.controls.stateObj.errors ,'focus':submitted && form.billingInfo.controls.stateObj.errors
+                    }" #mystateRef>
+                    <span *ngIf="
+                        InitialCheckOutForm.get('billingInfo.stateObj')!
+                          .value == null;
+                        else stateName
+                      " class="dropdown-placeholder-color">
+                      State</span>
+                    <ng-template #stateName>{{
+                      InitialCheckOutForm.get("billingInfo.stateObj")!.value
+                      ?.stateName
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                        let state of stateList
+                          | customeSharedfilter
+                            : InitialCheckOutForm.get(
+                                'billingInfo.searchFilter'
+                              )!.value;
+                        index as i
+                      " [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedStateOption(state, i)">
+                      {{ state.stateName }}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.stateObj.errors?.['required']">
+                    <sup>*</sup>Please select state
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Zip Code" (input)="commonService.onInputChange($event)" formControlName="zipCode"
+                    maxlength="5" [ngClass]="{
+                      'is-invalid':
+                        submitted && form.billingInfo.controls.zipCode.errors ,'focus':submitted && form.billingInfo.controls.zipCode.errors
+                    }" tabindex="11" #myzipCodeRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.zipCode.errors?.['required']">
+                    <sup>*</sup>Please enter zip code
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.zipCode.errors?.['maxlength']">
+                    <sup>*</sup>zip code will not be greater than 5 characters
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.billingInfo.controls.zipCode.errors?.['pattern']">
+                    <sup>*</sup>Please enter proper zip code
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="billingObj.sourceName != commonService.commonTypeObj.member.personalTrainingType">
+          <div class="bg-form col-lg-12 col-md-12 col-sm-12 col-12 mt-5" formGroupName="paymentInformation">
+            <h5 class="fw-bolder">{{ memberPlanText }}</h5>
+            <p class="mt-1">Due Today</p>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Cardholder's First Name" formControlName="creditCardFirstName" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.paymentInformation.controls.creditCardFirstName
+                        .errors,'focus':submitted && form.paymentInformation.controls.creditCardFirstName.errors
+                  }" tabindex="12" #mycreditCardFirstNameRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardFirstName.errors?.['required']">
+                    <sup>*</sup>Please enter cardholder's first name
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardFirstName.errors?.['pattern']">
+                    <sup>*</sup>Cardholder's first name should allow only
+                    alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                    and must begin with an alpha character.
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Cardholder's Last Name" formControlName="creditCardLastName" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.paymentInformation.controls.creditCardLastName.errors,'focus':submitted &&  form.paymentInformation.controls.creditCardLastName.errors
+                  }" tabindex="13" #mycreditCardLastNameRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardLastName.errors?.['required']">
+                    <sup>*</sup>Please enter cardholder's last name
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardLastName.errors?.['pattern']">
+                    <sup>*</sup>Cardholder's last name should allow only
+                    alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                    and must begin with an alpha character.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-input col-12 col-lg-12 col-md-12 col-sm-12 mb-3 position-relative">
+              <input class="form-control rounded-1 border border-dark shadow-checkout" type="text"
+                placeholder="Credit Card Number" maxlength="19" tabindex="13" formControlName="creditCardNumber"
+                appOnlyNumber autocomplete="cc-Number" ccNumber #ccNumber="ccNumber"
+                (ngModelChange)="checkCreditCardType($event)" (blur)="
+                checkCreditCardNumber(
+                  InitialCheckOutForm.value.paymentInformation
+                    ?.creditCardNumber,
+                  prepaidCreditCardContent, 'NormalPlan'
+                )
+              " [ngClass]="{
+                'is-invalid':
+                  submitted &&
+                  form.paymentInformation.controls.creditCardNumber.errors,'focus':submitted && form.paymentInformation.controls.creditCardNumber.errors
+              }" #myccNumberRef />
+              <div class="input-image position-absolute">
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/amex.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.paymentInformation
+                      ?.creditCardType === creditCardTypeObj.americanExpress
+                }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/visa.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.paymentInformation
+                      ?.creditCardType === creditCardTypeObj.visa
+                }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/master-card.png"
+                  [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.paymentInformation
+                      ?.creditCardType === creditCardTypeObj.masterCard
+                }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/discover.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.paymentInformation
+                      ?.creditCardType === creditCardTypeObj.discover
+                }" />
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.paymentInformation.controls.creditCardNumber.errors?.['required']">
+                <sup>*</sup>Please enter credit card number
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="(submitted && form.paymentInformation.controls.creditCardNumber.errors?.['maxlength']) || 
+                                  (submitted && form.paymentInformation.controls.creditCardNumber.errors?.['minlength']) || 
+                                  (submitted && form.paymentInformation.controls.creditCardNumber.errors?.['ccNumber'])">
+                <sup>*</sup>Please enter valid credit card number
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.paymentInformation.controls.creditCardType.errors?.['required']">
+                <sup>*</sup>Please enter valid credit card number, it allow only
+                Visa, MasterCard, American Express, Discover credit card
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" tabindex="15" [ngClass]="{
+                          'is-dropdown-invalid is-invalid':
+                            submitted && form.paymentInformation.controls.creditCardExpMonth.errors,'focus':submitted && form.paymentInformation.controls.creditCardExpMonth.errors
+                        }" #mycreditCardExpMonthRef>
+                    <span *ngIf="
+                            InitialCheckOutForm.get('paymentInformation.creditCardExpMonth')!
+                              .value == null;
+                            else MonthType  
+                          " class="dropdown-placeholder-color">
+                      Exp.Month</span>
+                    <ng-template #MonthType>{{
+                      InitialCheckOutForm.get("paymentInformation.creditCardExpMonth")!.value?.monthName
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                            let month of monthList
+                            | customeSharedfilter
+                            : InitialCheckOutForm.get(
+                                'paymentInformation.searchFilter'
+                              )!.value;
+                            index as i
+                          " [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedmonthTypeOption(month, i)">
+                      {{month.monthName}}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardExpMonth.errors?.['required']">
+                    <sup>*</sup>Please select credit card expiration month
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" tabindex="16" [ngClass]="{
+                        'is-dropdown-invalid is-invalid':
+                          submitted && form.paymentInformation.controls.creditCardExpYear.errors,'focus':submitted && form.paymentInformation.controls.creditCardExpYear.errors
+                      }" #mycreditCardExpYearRef>
+                    <span *ngIf="
+                          InitialCheckOutForm.get('paymentInformation.creditCardExpYear')!
+                            .value == '';
+                          else YearType  
+                        " class="dropdown-placeholder-color">
+                      Exp. Year</span>
+                    <ng-template #YearType>{{
+                      InitialCheckOutForm.get("paymentInformation.creditCardExpYear")!.value
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchYearFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                          let year of yearList
+                          | customeSharedfilter
+                            : InitialCheckOutForm.get(
+                                'paymentInformation.searchYearFilter'
+                              )!.value;
+                          index as i
+                        " [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedYearTypeOption(year, i)">
+                      {{year}}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardExpYear.errors?.['required']">
+                    <sup>*</sup>Please select credit card expiration year
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="form-group inner-addon right-addon secureCVV">
+                  <div class="input-group mb-3 input-font-size">
+                    <input type="text" name="password" class="form-control rounded-1 border border-dark shadow-checkout"
+                      placeholder="CVV" (input)="commonService.onInputChange($event)" maxlength="4"
+                      formControlName="creditCardCVV" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.paymentInformation.controls.creditCardCVV.errors,'focus':submitted && form.paymentInformation.controls.creditCardCVV.errors
+                  }" tabindex="17" #mycreditCardCVVRef />
+                    <span id="BillingCvv"></span>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.paymentInformation.controls.creditCardCVV.errors?.['required']">
+                      <sup>*</sup>Please enter credit card CVV
+                    </div>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.paymentInformation.controls.creditCardCVV.errors?.['pattern']">
+                      <sup>*</sup>Please enter proper credit card CVV
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="Zip Code" (input)="commonService.onInputChange($event)" maxlength="5"
+                    formControlName="creditCardZipCode" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.paymentInformation.controls.creditCardZipCode.errors,'focus':submitted && form.paymentInformation.controls.creditCardZipCode.errors
+                  }" tabindex="18" #mycreditCardZipCodeRef />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardZipCode.errors?.['required']">
+                    <sup>*</sup>Please enter credit card postal code
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.paymentInformation.controls.creditCardZipCode.errors?.['pattern']">
+                    <sup>*</sup>Zip Code will not be 5 digits.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div formGroupName="bankingDetailObj">
+            <div class="m-auto">
+              <p class="fw-normal">{{ MPText }}</p>
+              <div class="d-flex gap-1" (click)="IsBankingDetailsChecked(true)">
+                <input id="bankingDetails" type="radio" [value]="true" name="IsUseBankingDetails" class="radiobox"
+                  formControlName="IsUseBankingDetails" tabindex="19" />
+                <label for="bankingDetails" class="ps-2">Use banking details and save {{ProcessingFee}} per
+                  month</label>
+              </div>
+              <p class="body-text">
+                Seamlessly link your bank account to get your membership setup
+                instantly, and more securely, with Plaid.
+              </p>
+              <div id="MemberPlanPlaid" class="bg-form col-lg-12 col-md-12 col-sm-12 col-12 mt-3"
+                *ngIf="showdraftAccount">
+                <div class="justify-content-center">
+                  <div class="row mb-1">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                      <div class="input-group mb-3 input-font-size">
+                        <input id="AccHolderFirstName" type="text"
+                          class="form-control rounded-1 border border-dark shadow-checkout"
+                          placeholder="Account Holder First Name" formControlName="DraftAccountFirstName" [ngClass]="{
+                          'is-invalid':
+                            submitted &&
+                            form.bankingDetailObj.controls.DraftAccountFirstName.errors,'focus':submitted && form.bankingDetailObj.controls.DraftAccountFirstName.errors
+                        }" tabindex="20" #DraftAccountFirstName/>
+                        <!-- error block -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountFirstName.errors?.['required']">
+                          <sup>*</sup>Please enter first name.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountFirstName.errors?.['maxlength']">
+                          <sup>*</sup>First name will not be greater than 15
+                          characters.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountFirstName.errors?.['pattern']">
+                          <sup>*</sup>First name should allow only alphanumeric
+                          characters, apostrophes('), hyphens(-), or spaces and
+                          must begin with an alpha character.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                      <div class="input-group mb-3 input-font-size">
+                        <input id="AccHolderLastName" type="text"
+                          class="form-control rounded-1 border border-dark shadow-checkout"
+                          placeholder="Account Holder Last Name" formControlName="DraftAccountLastName" [ngClass]="{
+                          'is-invalid':
+                            submitted &&
+                            form.bankingDetailObj.controls.DraftAccountLastName.errors,'focus':submitted && form.bankingDetailObj.controls.DraftAccountLastName.errors
+                        }" tabindex="21" #DraftAccountLastName/>
+                        <!-- error block -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountLastName.errors?.['required']">
+                          <sup>*</sup>Please enter last name.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountLastName.errors?.['maxlength']">
+                          <sup>*</sup>Last name will not be greater than 15
+                          characters.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountLastName.errors?.['pattern']">
+                          <sup>*</sup>Last name should allow only alphanumeric
+                          characters, apostrophes('), hyphens(-), or spaces and
+                          must begin with an alpha character.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 m-auto">
+                      <div class="input-group mb-3 input-font-size">
+                        <button type="button"
+                          class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                          data-bs-toggle="dropdown" aria-expanded="false" tabindex="22" [ngClass]="{
+                          'is-dropdown-invalid is-invalid':
+                            submitted && form.bankingDetailObj.controls.DraftAccountObj.errors,'focus':submitted && form.bankingDetailObj.controls.DraftAccountObj.errors
+                        }" #DraftAccountObj>
+                          <span *ngIf="
+                            InitialCheckOutForm.get('bankingDetailObj.DraftAccountObj')!
+                              .value == null;
+                            else accountType
+                          " class="dropdown-placeholder-color">
+                            Account Type</span>
+                          <ng-template #accountType>{{
+                            InitialCheckOutForm.get("bankingDetailObj.DraftAccountObj")!.value
+                            ?.Type
+                            }}</ng-template>
+                        </button>
+                        <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                          <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                            let account of accountList;
+                            index as i
+                          " [ngClass]="{ active: i == activeIndex }"
+                            (click)="activeSelectedAccountTypeOption(account, i)">
+                            {{ account.Type }}
+                          </li>
+                        </ul>
+                        <!-- error block -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountObj.errors?.['required']">
+                          <sup>*</sup>Please select AccountType
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 m-auto">
+                      <div class="input-group mb-3 input-font-size">
+                        <input id="AccHolderRoutingNo" type="text"
+                          class="form-control rounded-1 border border-dark shadow-checkout" placeholder="Routing Number"
+                          (input)="commonService.onInputChange($event)" maxlength="9" [ngClass]="{
+                          'is-invalid':
+                            submitted &&
+                            form.bankingDetailObj.controls.DraftAccountRoutingNumber.errors,'focus':submitted && form.bankingDetailObj.controls.DraftAccountRoutingNumber.errors
+                        }" formControlName="DraftAccountRoutingNumber" tabindex="23" #DraftAccountRoutingNumber/>
+                        <!-- error block -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted  && form.bankingDetailObj.controls.DraftAccountRoutingNumber.errors?.['required']">
+                          <sup>*</sup>Please enter account routing number.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountRoutingNumber.errors?.['pattern']">
+                          <sup>*</sup>Routing number will be 9 digits.
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 m-auto">
+                      <div class="input-group mb-3 input-font-size">
+                        <input id="AccHolderAccNo" type="text"
+                          class="form-control rounded-1 border border-dark shadow-checkout"
+                          (input)="commonService.onInputChange($event)" maxlength="17" placeholder="Account Number"
+                          [ngClass]="{
+                          'is-invalid':
+                            submitted &&
+                            form.bankingDetailObj.controls.DraftAccountNumber.errors,'focus':submitted && form.bankingDetailObj.controls.DraftAccountNumber.errors
+                        }" formControlName="DraftAccountNumber" tabindex="24" #DraftAccountNumber/>
+                        <!-- error block -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted  && form.bankingDetailObj.controls.DraftAccountNumber.errors?.['required']">
+                          <sup>*</sup>Please enter account number.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && form.bankingDetailObj.controls.DraftAccountNumber.errors?.['pattern']">
+                          <sup>*</sup>Account number will be 8 to 17 digits.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" id="DraftPaymentType" name="DraftPaymentType" value="">
+                  <input type="hidden" id="AccHolderAccNo" name="AccHolderAccNo" value="">
+                  <input type="hidden" id="MemberPlaidClose" name="MemberPlaidClose" value="false">
+                </div>
+              </div>
+            </div>
+
+            <div class="m-auto mt-3">
+              <div class="d-flex gap-1" (click)="IsBankingDetailsChecked(false)">
+                <input id="CardDetails" type="radio" [value]="false" name="IsUseBankingDetails" class="radiobox"
+                  formControlName="IsUseBankingDetails" tabindex="25" />
+                <label for="CardDetails" class="ps-2">Use same payment card for recurring payments</label>
+              </div>
+
+              <p class="body-text">
+                *To use a credit card or debit card there will be a
+                <span class="fw-bold">{{ProcessingFee}} convenience fee</span> added to this
+                payment and to all recurring payments. To avoid this fee please
+                select <span class="fw-bold">Use Banking Details</span> above.
+              </p>
+            </div>
+
+            <div class="m-auto mt-3">
+              <div class="d-flex gap-1" (click)="IsBankingDetailsChecked(null)">
+                <input id="SecondaryCardDetails" type="radio" [value]="null" name="IsUseBankingDetails" class="radiobox"
+                  formControlName="IsUseBankingDetails" tabindex="26" />
+                <label for="SecondaryCardDetails" class="ps-2">Add different payment card for recurring payments</label>
+              </div>
+              <p class="body-text">
+                *To use a credit card or debit card there will be a
+                <span class="fw-bold">{{ProcessingFee}} convenience fee</span> added to this
+                payment and to all recurring payments. To avoid this fee please
+                select <span class="fw-bold">Use Banking Details</span> above.
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="IsSecondaryCCDetails">
+            <div class="bg-form col-lg-12 col-md-12 col-sm-12 col-12 mt-4" formGroupName="secondarypaymentInformation">
+              <p class="mt-1">Due Today</p>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="input-group mb-3 input-font-size">
+                    <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                      placeholder="Cardholder's First Name" formControlName="creditCardFirstName" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.secondarypaymentInformation.controls.creditCardFirstName
+                          .errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardFirstName.errors
+                    }" #mycreditCardFirstNameRefsecondary />
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardFirstName.errors?.['required']">
+                      <sup>*</sup>Please enter cardholder's first name
+                    </div>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardFirstName.errors?.['pattern']">
+                      <sup>*</sup>Cardholder's first name should allow only
+                      alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                      and must begin with an alpha character.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="input-group mb-3 input-font-size">
+                    <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                      placeholder="Cardholder's Last Name" formControlName="creditCardLastName" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.secondarypaymentInformation.controls.creditCardLastName.errors,'focus':submitted &&  form.secondarypaymentInformation.controls.creditCardLastName.errors
+                    }" #mycreditCardLastNameRefsecondary />
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardLastName.errors?.['required']">
+                      <sup>*</sup>Please enter cardholder's last name
+                    </div>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardLastName.errors?.['pattern']">
+                      <sup>*</sup>Cardholder's last name should allow only
+                      alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                      and must begin with an alpha character.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-input col-12 col-lg-12 col-md-12 col-sm-12 mb-3 position-relative">
+                <input class="form-control rounded-1 border border-dark shadow-checkout" type="text"
+                  placeholder="Credit Card Number" maxlength="19" formControlName="creditCardNumber" appOnlyNumber
+                  autocomplete="cc-Number" ccNumber #ccNumber="ccNumber"
+                  (ngModelChange)="checkCreditCardTypeForSecondary($event)" (blur)="
+                  checkCreditCardNumber(
+                    InitialCheckOutForm.value.secondarypaymentInformation
+                      ?.creditCardNumber,
+                    prepaidCreditCardContent, 'NormalPlan'
+                  )
+                " [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.secondarypaymentInformation.controls.creditCardNumber.errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardNumber.errors
+                }" #myccNumberRefsecondary />
+                <div class="input-image position-absolute">
+                  <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/amex.png" [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondarypaymentInformation
+                        ?.creditCardType === creditCardTypeObj.americanExpress
+                  }" />
+                  <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/visa.png" [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondarypaymentInformation
+                        ?.creditCardType === creditCardTypeObj.visa
+                  }" />
+                  <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/master-card.png"
+                    [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondarypaymentInformation
+                        ?.creditCardType === creditCardTypeObj.masterCard
+                  }" />
+                  <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/discover.png"
+                    [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondarypaymentInformation
+                        ?.creditCardType === creditCardTypeObj.discover
+                  }" />
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardNumber.errors?.['required']">
+                  <sup>*</sup>Please enter credit card number
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="(submitted && form.secondarypaymentInformation.controls.creditCardNumber.errors?.['maxlength']) || 
+                                    (submitted && form.secondarypaymentInformation.controls.creditCardNumber.errors?.['minlength']) || 
+                                    (submitted && form.secondarypaymentInformation.controls.creditCardNumber.errors?.['ccNumber'])">
+                  <sup>*</sup>Please enter valid credit card number
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardType.errors?.['required']">
+                  <sup>*</sup>Please enter valid credit card number, it allow only
+                  Visa, MasterCard, American Express, Discover credit card
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="input-group mb-3 input-font-size">
+                    <button type="button"
+                      class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                      data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+                            'is-dropdown-invalid is-invalid':
+                              submitted && form.secondarypaymentInformation.controls.creditCardExpMonth.errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardExpMonth.errors
+                          }" #mycreditCardExpMonthRefsecondary>
+                      <span *ngIf="
+                              InitialCheckOutForm.get('secondarypaymentInformation.creditCardExpMonth')!
+                                .value == null;
+                              else MonthType  
+                            " class="dropdown-placeholder-color">
+                        Exp.Month</span>
+                      <ng-template #MonthType>{{
+                        InitialCheckOutForm.get("secondarypaymentInformation.creditCardExpMonth")!.value?.monthName
+                        }}</ng-template>
+                    </button>
+                    <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                      <div class="mx-3 mb-2">
+                        <input type="text" class="filter-text form-control" placeholder="Search..."
+                          formControlName="searchFilter" />
+                      </div>
+                      <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                              let month of monthList
+                              | customeSharedfilter
+                              : InitialCheckOutForm.get(
+                                  'secondarypaymentInformation.searchFilter'
+                                )!.value;
+                              index as i
+                            " [ngClass]="{ active: i == activeIndex }"
+                        (click)="activeSelectedmonthTypeOptionForSecondary(month, i)">
+                        {{month.monthName}}
+                      </li>
+                    </ul>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardExpMonth.errors?.['required']">
+                      <sup>*</sup>Please select credit card expiration month
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="input-group mb-3 input-font-size">
+                    <button type="button"
+                      class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                      data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+                          'is-dropdown-invalid is-invalid':
+                            submitted && form.secondarypaymentInformation.controls.creditCardExpYear.errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardExpYear.errors
+                        }" #mycreditCardExpYearRefsecondary>
+                      <span *ngIf="
+                            InitialCheckOutForm.get('secondarypaymentInformation.creditCardExpYear')!
+                              .value == '';
+                            else YearType  
+                          " class="dropdown-placeholder-color">
+                        Exp. Year</span>
+                      <ng-template #YearType>{{
+                        InitialCheckOutForm.get("secondarypaymentInformation.creditCardExpYear")!.value
+                        }}</ng-template>
+                    </button>
+                    <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                      <div class="mx-3 mb-2">
+                        <input type="text" class="filter-text form-control" placeholder="Search..."
+                          formControlName="searchYearFilter" />
+                      </div>
+                      <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                            let year of yearList
+                            | customeSharedfilter
+                              : InitialCheckOutForm.get(
+                                  'secondarypaymentInformation.searchYearFilter'
+                                )!.value;
+                            index as i
+                          " [ngClass]="{ active: i == activeIndex }"
+                        (click)="activeSelectedYearTypeOptionForSecondary(year, i)">
+                        {{year}}
+                      </li>
+                    </ul>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardExpYear.errors?.['required']">
+                      <sup>*</sup>Please select credit card expiration year
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="form-group inner-addon right-addon secureCVV">
+                    <div class="input-group mb-3 input-font-size">
+                      <input type="text" name="password"
+                        class="form-control rounded-1 border border-dark shadow-checkout" placeholder="CVV"
+                        (input)="commonService.onInputChange($event)" maxlength="4" formControlName="creditCardCVV"
+                        [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.secondarypaymentInformation.controls.creditCardCVV.errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardCVV.errors
+                    }" #mycreditCardCVVRefsecondary />
+                      <span id="BillingCvv"></span>
+                      <div class="invalid-feedback"
+                        *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardCVV.errors?.['required']">
+                        <sup>*</sup>Please enter credit card CVV
+                      </div>
+                      <div class="invalid-feedback"
+                        *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardCVV.errors?.['pattern']">
+                        <sup>*</sup>Please enter proper credit card CVV
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                  <div class="input-group mb-3 input-font-size">
+                    <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                      placeholder="Zip Code" (input)="commonService.onInputChange($event)" maxlength="5"
+                      formControlName="creditCardZipCode" [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        form.secondarypaymentInformation.controls.creditCardZipCode.errors,'focus':submitted && form.secondarypaymentInformation.controls.creditCardZipCode.errors
+                    }" #mycreditCardZipCodeRefsecondary />
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardZipCode.errors?.['required']">
+                      <sup>*</sup>Please enter credit card postal code
+                    </div>
+                    <div class="invalid-feedback"
+                      *ngIf="submitted && form.secondarypaymentInformation.controls.creditCardZipCode.errors?.['pattern']">
+                      <sup>*</sup>Zip Code will not be 5 digits.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-auto">
+            <h5 class="fw-bolder mt-4">PLAN SUMMARY</h5>
+            <div>
+              <div class="bg-white rounded-2 border px-3 p-2 border-dark">
+                <div class="col-lg-12 m-auto">
+                  <div class="pt-3 fs-3 fw-bold text-black">
+                    {{ membershipPlanObj.planName }}
+                  </div>
+                  <hr class="border-2 border-black" />
+                  <div>
+                    <table class="table bg-white p-3">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="border-0 text-dark-gray">
+                            Initiation Fee
+                          </th>
+                          <td colspan="3" class="border-0 text-dark-gray"></td>
+                          <td class="align-middle border-0 text-end fw-bold text-dark-gray">
+                            {{ membershipPlanObj.initiationFee }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="border-0 text-dark-gray">
+                            First Month Dues
+                          </th>
+                          <td colspan="3" class="border-0 text-dark-gray"></td>
+                          <td class="border-0 text-end fw-bold text-dark-gray">
+                            {{ membershipPlanObj.firstMonthDues }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="border-0 text-dark-gray">
+                            Prorated Annual Fee
+                          </th>
+                          <td colspan="3" class="border-0 text-dark-gray"></td>
+                          <td class="border-0 text-end fw-bold text-dark-gray"
+                            *ngIf="membershipPlanObj.prorated_total != null">
+                            ${{ membershipPlanObj.prorated_total }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr />
+                    <table class="table p-3">
+                      <tbody>
+                        <tr class="">
+                          <th scope="row" class="border-0 text-dark-gray">
+                            Total Due Today
+                          </th>
+                          <td colspan="3" class="border-0 text-dark-gray"></td>
+                          <td class="align-middle border-0 text-end fw-bold text-dark-gray">
+                            {{ membershipPlanObj.downPaymentTotalAmount }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="fw-bold text-14">
+                      Annual fee due 30 days from join date(tax included) {{membershipPlanObj.clubFeeTotalAmount}}
+                    </div>
+                    <div class="fw-normal text-14 pb-4 text-dark-gray">
+                      *Estimated pricing based on general rates & taxes. Yearly
+                      fee of {{membershipPlanObj.clubFeeTotalAmount}} will be billed in 30 days of start date.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn bg-green col-12 mt-3 text-white py-3 text-uppercase shadow-checkout"
+                (click)="selectMembershipPlans()">
+                Choose Another Plan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-section" *ngIf="membershipPTPlanObj != null || SGTPlanObj != null">
+        <div class="same-as-above-section mt-5" formGroupName="bankingDetailObj" *ngIf="
+            (membershipPTPlanObj || SGTPlanObj) &&
+            billingObj.sourceName !=
+              commonService.commonTypeObj.member.personalTrainingType
+          ">
+          <hr />
+          <div class="form-check" (click)="checkSameAsAbove()">
+            <input class="form-check-input shadow-none sameAsAboveCheckBox" type="checkbox" id="sameAsAboveCheckBox"
+              formControlName="IsSameAsAbove" tabindex="27" />
+            <h5 class="fw-bolder">Same as above</h5>
+          </div>
+        </div>
+        <div class="bg-form mt-5" formGroupName="PTpaymentInformation">
+          <h5 class="fw-bolder" *ngIf="membershipPTPlanObj && !SGTPlanObj">
+            {{ PTPlanText }}
+          </h5>
+          <h5 class="fw-bolder" *ngIf="SGTPlanObj && !membershipPTPlanObj">
+            {{ SGTPlanText }}
+          </h5>
+          <h5 class="fw-bolder" *ngIf="membershipPTPlanObj && SGTPlanObj">
+            {{ PTPlanText }} & {{ SGTPlanText }}
+          </h5>
+          <p class="mt-1">Due Today</p>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+              <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                placeholder="Cardholder's First Name" formControlName="creditCardFirstName" [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.PTpaymentInformation.controls.creditCardFirstName
+                      .errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardFirstName.errors
+                }" tabindex="28" #myPTcreditCardFirstNameRef />
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardFirstName.errors?.['required']">
+                <sup>*</sup>Please enter cardholder's first name
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardFirstName.errors?.['pattern']">
+                <sup>*</sup>Cardholder's first name should allow only
+                alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                and must begin with an alpha character.
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+              <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                placeholder="Cardholder's Last Name" formControlName="creditCardLastName" [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.PTpaymentInformation.controls.creditCardLastName.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardLastName.errors
+                }" tabindex="29" #myPTcreditCardLastNameRef />
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardLastName.errors?.['required']">
+                <sup>*</sup>Please enter cardholder's last name
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardLastName.errors?.['pattern']">
+                <sup>*</sup>Cardholder's last name should allow only
+                alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                and must begin with an alpha character.
+              </div>
+            </div>
+          </div>
+          <div class="card-input col-12 col-lg-12 col-md-12 col-sm-12 mb-3 position-relative">
+            <input class="form-control rounded-1 border border-dark shadow-checkout" type="text"
+              placeholder="Credit Card Number" maxlength="19" tabindex="30" formControlName="creditCardNumber"
+              appOnlyNumber autocomplete="cc-Number" ccNumber #ccNumber="ccNumber"
+              (ngModelChange)="checkPTCreditCardType($event)" (blur)="
+                checkCreditCardNumber(
+                  InitialCheckOutForm.value.PTpaymentInformation
+                    ?.creditCardNumber,
+                  prepaidCreditCardContent, 'PTPlan'
+                ) 
+              " [ngClass]="{
+                'is-invalid':
+                  submitted &&
+                  form.PTpaymentInformation.controls.creditCardNumber.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardNumber.errors
+              }" #myPTccNumberRef />
+            <div class="input-image position-absolute">
+              <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/amex.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.PTpaymentInformation
+                      ?.creditCardType === creditCardTypeObj.americanExpress
+                }" />
+              <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/visa.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.PTpaymentInformation
+                      ?.creditCardType === creditCardTypeObj.visa
+                }" />
+              <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/master-card.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.PTpaymentInformation
+                      ?.creditCardType === creditCardTypeObj.masterCard
+                }" />
+              <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/discover.png" [ngClass]="{
+                  'active-card opacity-100 border border-dark border-1':
+                    InitialCheckOutForm.value.PTpaymentInformation
+                      ?.creditCardType === creditCardTypeObj.discover
+                }" />
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted && form.PTpaymentInformation.controls.creditCardNumber.errors?.['required']">
+              <sup>*</sup>Please enter credit card number
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="(submitted && form.PTpaymentInformation.controls.creditCardNumber.errors?.['maxlength']) || 
+                                  (submitted && form.PTpaymentInformation.controls.creditCardNumber.errors?.['minlength']) || 
+                                  (submitted && form.PTpaymentInformation.controls.creditCardNumber.errors?.['ccNumber'])">
+              <sup>*</sup>Please enter valid credit card number
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted && form.PTpaymentInformation.controls.creditCardType.errors?.['required']">
+              <sup>*</sup>Please enter valid credit card number, it allow only
+              Visa, MasterCard, American Express, Discover credit card
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+              <div class="input-group mb-3 input-font-size">
+                <button type="button"
+                  class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                  data-bs-toggle="dropdown" aria-expanded="false" tabindex="31" [ngClass]="{
+                    'is-dropdown-invalid is-invalid':
+                      submitted && form.PTpaymentInformation.controls.creditCardExpMonth.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardExpMonth.errors
+                  }" #myPTcreditCardExpMonthRef>
+                  <span *ngIf="
+                      InitialCheckOutForm.get('PTpaymentInformation.creditCardExpMonth')!
+                        .value == null;
+                      else MonthType  
+                    " class="dropdown-placeholder-color">
+                    Exp.Month</span>
+                  <ng-template #MonthType>{{
+                    InitialCheckOutForm.get("PTpaymentInformation.creditCardExpMonth")!.value
+                    ?.monthName
+                    }}</ng-template>
+                </button>
+                <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                  <div class="mx-3 mb-2">
+                    <input type="text" class="filter-text form-control" placeholder="Search..."
+                      formControlName="searchFilter" />
+                  </div>
+                  <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                let month of monthList
+                | customeSharedfilter
+                : InitialCheckOutForm.get(
+                    'PTpaymentInformation.searchFilter'
+                  )!.value;
+                index as i
+              " [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedmonthTypeOptionForPT(month, i)">
+                    {{month.monthName}}
+                  </li>
+                </ul>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.PTpaymentInformation.controls.creditCardExpMonth.errors?.['required']">
+                  <sup>*</sup>Please select credit card expiration month
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+              <div class="input-group mb-3 input-font-size">
+                <button type="button"
+                  class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                  data-bs-toggle="dropdown" aria-expanded="false" tabindex="32" [ngClass]="{
+                    'is-dropdown-invalid is-invalid':
+                      submitted && form.PTpaymentInformation.controls.creditCardExpYear.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardExpYear.errors
+                  }" #myPTcreditCardExpYearRef>
+                  <span *ngIf="
+                      InitialCheckOutForm.get('PTpaymentInformation.creditCardExpYear')!
+                        .value == '';
+                      else YearType  
+                    " class="dropdown-placeholder-color">
+                    Exp. Year</span>
+                  <ng-template #YearType>{{
+                    InitialCheckOutForm.get("PTpaymentInformation.creditCardExpYear")!.value
+                    }}</ng-template>
+                </button>
+                <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                  <div class="mx-3 mb-2">
+                    <input type="text" class="filter-text form-control" placeholder="Search..."
+                      formControlName="searchYearFilter" />
+                  </div>
+                  <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                      let year of yearList
+                      | customeSharedfilter
+                        : InitialCheckOutForm.get(
+                            'PTpaymentInformation.searchYearFilter'
+                          )!.value;
+                      index as i
+                    " [ngClass]="{ active: i == activeIndex }" (click)="activeSelectedYearTypeOptionForPt(year, i)">
+                    {{year}}
+                  </li>
+                </ul>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.PTpaymentInformation.controls.creditCardExpYear.errors?.['required']">
+                  <sup>*</sup>Please select credit card expiration year
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+              <div class="form-group inner-addon right-addon secureCVV">
+                <input type="text" name="password" class="form-control rounded-1 border border-dark shadow-checkout"
+                  placeholder="CVV" (input)="commonService.onInputChange($event)" maxlength="4"
+                  formControlName="creditCardCVV" [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.PTpaymentInformation.controls.creditCardCVV.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardCVV.errors
+                }" tabindex="33" #myPTcreditCardCVVRef />
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.PTpaymentInformation.controls.creditCardCVV.errors?.['required']">
+                  <sup>*</sup>Please enter credit card CVV
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.PTpaymentInformation.controls.creditCardCVV.errors?.['pattern']">
+                  <sup>*</sup>Please enter proper credit card CVV
+                </div>
+
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+              <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                placeholder="Zip Code" maxlength="5" (input)="commonService.onInputChange($event)"
+                formControlName="creditCardZipCode" [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.PTpaymentInformation.controls.creditCardZipCode.errors,'focus':submitted && form.PTpaymentInformation.controls.creditCardZipCode.errors
+                }" tabindex="34" #myPTcreditCardZipCodeRef />
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardZipCode.errors?.['required']">
+                <sup>*</sup>Please enter credit card postal code
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.PTpaymentInformation.controls.creditCardZipCode.errors?.['pattern']">
+                <sup>*</sup>Zip Code will not be 5 digits.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PT Plans -->
+
+        <div formGroupName="PTbankingDetailObj">
+          <div class="m-auto">
+            <p class="fw-normal">{{ MPText }}</p>
+          </div>
+
+          <div class="m-auto mt-3">
+            <div class="d-flex gap-1" (click)="IsPTBankingDetailsChecked(false)">
+              <input id="PTCardDetails" type="radio" [value]="true" name="IsPTUseBankingDetails" class="radiobox"
+                formControlName="IsPTUseBankingDetails" tabindex="35" />
+
+              <label for="PTCardDetails" class="ps-2">Use same payment card for recurring payments</label>
+            </div>
+            <p class="body-text">
+              *To use a credit card or debit card there will be a
+              <span class="fw-bold">{{ProcessingFee}} convenience fee</span> added to this
+              payment and to all recurring payments. To avoid this fee please
+              select <span class="fw-bold">Use Banking Details</span> above.
+            </p>
+          </div>
+
+          <div class="m-auto mt-3">
+            <div class="d-flex gap-1" (click)="IsPTBankingDetailsChecked(null)">
+              <input id="PTSecondaryCardDetails" type="radio" [value]="null" name="IsPTUseBankingDetails"
+                class="radiobox" formControlName="IsPTUseBankingDetails" tabindex="36" />
+              <label for="PTSecondaryCardDetails" class="ps-2">Add different payment card for recurring payments</label>
+            </div>
+            <p class="body-text">
+              *To use a credit card or debit card there will be a
+              <span class="fw-bold">{{ProcessingFee}} convenience fee</span> added to this
+              payment and to all recurring payments. To avoid this fee please
+              select <span class="fw-bold">Use Banking Details</span> above.
+            </p>
+          </div>
+        </div>
+
+        <div *ngIf="IsPTSecondaryCCDetails">
+          <div class="bg-form mt-4" formGroupName="secondaryPTpaymentInformation">
+            <p class="mt-1">Due Today</p>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                  placeholder="Cardholder's First Name" formControlName="creditCardFirstName" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.secondaryPTpaymentInformation.controls.creditCardFirstName
+                        .errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardFirstName.errors
+                  }" #myPTcreditCardFirstNameRefsecondary />
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardFirstName.errors?.['required']">
+                  <sup>*</sup>Please enter cardholder's first name
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardFirstName.errors?.['pattern']">
+                  <sup>*</sup>Cardholder's first name should allow only
+                  alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                  and must begin with an alpha character.
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                  placeholder="Cardholder's Last Name" formControlName="creditCardLastName" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.secondaryPTpaymentInformation.controls.creditCardLastName.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardLastName.errors
+                  }" #myPTcreditCardLastNameRefsecondary />
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardLastName.errors?.['required']">
+                  <sup>*</sup>Please enter cardholder's last name
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardLastName.errors?.['pattern']">
+                  <sup>*</sup>Cardholder's last name should allow only
+                  alphanumeric characters, apostrophes('), hyphens(-), or spaces
+                  and must begin with an alpha character.
+                </div>
+              </div>
+            </div>
+            <div class="card-input col-12 col-lg-12 col-md-12 col-sm-12 mb-3 position-relative">
+              <input class="form-control rounded-1 border border-dark shadow-checkout" type="text"
+                placeholder="Credit Card Number" maxlength="19" formControlName="creditCardNumber" appOnlyNumber
+                autocomplete="cc-Number" ccNumber #ccNumber="ccNumber"
+                (ngModelChange)="checkPTCreditCardTypeForPTSecondary($event)" (blur)="
+                  checkCreditCardNumber(
+                    InitialCheckOutForm.value.secondaryPTpaymentInformation
+                      ?.creditCardNumber,
+                    prepaidCreditCardContent, 'PTPlan'
+                  ) 
+                " [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    form.secondaryPTpaymentInformation.controls.creditCardNumber.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardNumber.errors
+                }" #myPTccNumberRefsecondary />
+              <div class="input-image position-absolute">
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/amex.png" [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondaryPTpaymentInformation
+                        ?.creditCardType === creditCardTypeObj.americanExpress
+                  }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/visa.png" [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondaryPTpaymentInformation
+                        ?.creditCardType === creditCardTypeObj.visa
+                  }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/master-card.png"
+                  [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondaryPTpaymentInformation
+                        ?.creditCardType === creditCardTypeObj.masterCard
+                  }" />
+                <img class="h-auto me-2 opacity-50" src="../../../../assets/images/card-images/discover.png" [ngClass]="{
+                    'active-card opacity-100 border border-dark border-1':
+                      InitialCheckOutForm.value.secondaryPTpaymentInformation
+                        ?.creditCardType === creditCardTypeObj.discover
+                  }" />
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardNumber.errors?.['required']">
+                <sup>*</sup>Please enter credit card number
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="(submitted && form.secondaryPTpaymentInformation.controls.creditCardNumber.errors?.['maxlength']) || 
+                                    (submitted && form.secondaryPTpaymentInformation.controls.creditCardNumber.errors?.['minlength']) || 
+                                    (submitted && form.secondaryPTpaymentInformation.controls.creditCardNumber.errors?.['ccNumber'])">
+                <sup>*</sup>Please enter valid credit card number
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardType.errors?.['required']">
+                <sup>*</sup>Please enter valid credit card number, it allow only
+                Visa, MasterCard, American Express, Discover credit card
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+                      'is-dropdown-invalid is-invalid':
+                        submitted && form.secondaryPTpaymentInformation.controls.creditCardExpMonth.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardExpMonth.errors
+                    }" #myPTcreditCardExpMonthRefsecondary>
+                    <span *ngIf="
+                        InitialCheckOutForm.get('secondaryPTpaymentInformation.creditCardExpMonth')!
+                          .value == null;
+                        else MonthType  
+                      " class="dropdown-placeholder-color">
+                      Exp.Month</span>
+                    <ng-template #MonthType>{{
+                      InitialCheckOutForm.get("secondaryPTpaymentInformation.creditCardExpMonth")!.value
+                      ?.monthName
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                  let month of monthList
+                  | customeSharedfilter
+                  : InitialCheckOutForm.get(
+                      'secondaryPTpaymentInformation.searchFilter'
+                    )!.value;
+                  index as i
+                " [ngClass]="{ active: i == activeIndex }"
+                      (click)="activeSelectedmonthTypeOptionForPTSecondary(month, i)">
+                      {{month.monthName}}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardExpMonth.errors?.['required']">
+                    <sup>*</sup>Please select credit card expiration month
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                <div class="input-group mb-3 input-font-size">
+                  <button type="button"
+                    class="dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start form-control rounded-1 border border-dark shadow-checkout"
+                    data-bs-toggle="dropdown" aria-expanded="false" [ngClass]="{
+                      'is-dropdown-invalid is-invalid':
+                        submitted && form.secondaryPTpaymentInformation.controls.creditCardExpYear.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardExpYear.errors
+                    }" #myPTcreditCardExpYearRefsecondary>
+                    <span *ngIf="
+                        InitialCheckOutForm.get('secondaryPTpaymentInformation.creditCardExpYear')!
+                          .value == '';
+                        else YearType  
+                      " class="dropdown-placeholder-color">
+                      Exp. Year</span>
+                    <ng-template #YearType>{{
+                      InitialCheckOutForm.get("secondaryPTpaymentInformation.creditCardExpYear")!.value
+                      }}</ng-template>
+                  </button>
+                  <ul class="dropdown-menu w-100 overflow-auto mt-height">
+                    <div class="mx-3 mb-2">
+                      <input type="text" class="filter-text form-control" placeholder="Search..."
+                        formControlName="searchYearFilter" />
+                    </div>
+                    <li class="dropdown-item cursor-pointer py-2" *ngFor="
+                        let year of yearList
+                        | customeSharedfilter
+                          : InitialCheckOutForm.get(
+                              'secondaryPTpaymentInformation.searchYearFilter'
+                            )!.value;
+                        index as i
+                      " [ngClass]="{ active: i == activeIndex }"
+                      (click)="activeSelectedYearTypeOptionForPtSecondary(year, i)">
+                      {{year}}
+                    </li>
+                  </ul>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardExpYear.errors?.['required']">
+                    <sup>*</sup>Please select credit card expiration year
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                <div class="form-group inner-addon right-addon secureCVV">
+                  <input type="text" name="password" class="form-control rounded-1 border border-dark shadow-checkout"
+                    placeholder="CVV" (input)="commonService.onInputChange($event)" maxlength="4"
+                    formControlName="creditCardCVV" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.secondaryPTpaymentInformation.controls.creditCardCVV.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardCVV.errors
+                  }" #myPTcreditCardCVVRefsecondary />
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardCVV.errors?.['required']">
+                    <sup>*</sup>Please enter credit card CVV
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardCVV.errors?.['pattern']">
+                    <sup>*</sup>Please enter proper credit card CVV
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                <input type="text" class="form-control rounded-1 border border-dark shadow-checkout"
+                  placeholder="Zip Code" maxlength="5" (input)="commonService.onInputChange($event)"
+                  formControlName="creditCardZipCode" [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      form.secondaryPTpaymentInformation.controls.creditCardZipCode.errors,'focus':submitted && form.secondaryPTpaymentInformation.controls.creditCardZipCode.errors
+                  }" #myPTcreditCardZipCodeRefsecondary />
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardZipCode.errors?.['required']">
+                  <sup>*</sup>Please enter credit card postal code
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && form.secondaryPTpaymentInformation.controls.creditCardZipCode.errors?.['pattern']">
+                  <sup>*</sup>Zip Code will not be 5 digits.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-auto mt-4" *ngIf="membershipPTPlanObj">
+          <div class="bg-white rounded-2 px-3 p-2 border border-dark">
+            <div class="col-lg-12 m-auto">
+              <div class="pt-3 fs-3 fw-bold text-black">
+                {{ membershipPTPlanObj.planName }}
+              </div>
+              <hr class="border-2 border-black" />
+              <div>
+                <table class="table bg-white p-3">
+                  <tbody>
+                    <tr class="">
+                      <th scope="row" class="border-0 text-dark-gray">
+                        Monthly Recurring Charge
+                      </th>
+                      <td colspan="3" class="border-0 text-dark-gray"></td>
+                      <td class="align-middle border-0 text-dark-gray text-end fw-bold">
+                        <span *ngIf="membershipPTPlanObj.monthlyRecurringCharge == '$0.01'">
+                          $0.00
+                        </span>
+                        <span *ngIf="membershipPTPlanObj.monthlyRecurringCharge != '$0.01'">
+                          {{membershipPTPlanObj.monthlyRecurringCharge}}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr />
+                <table class="table bg-white p-3">
+                  <tbody>
+                    <tr class="">
+                      <th scope="row" class="border-0 text-dark-gray">
+                        Total Due Today
+                      </th>
+                      <td colspan="3" class="border-0 text-dark-gray"></td>
+                      <td class="align-middle border-0 text-dark-gray text-end fw-bold">
+                        {{ membershipPTPlanObj.totalPrice }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="fw-normal text-14 pb-4">
+                  *Estimated pricing based on general rates & taxes.
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn bg-green col-12 mt-3 text-white py-3 text-uppercase shadow-checkout"
+            (click)="selectPTPlans()">
+            Choose Another Plan
+          </button>
+        </div>
+
+        <div class="m-auto mt-4" *ngIf="SGTPlanObj">
+          <div class="bg-white rounded-2 px-3 p-2 border border-dark">
+            <div class="col-lg-12 m-auto">
+              <div class="pt-3 fs-3 fw-bold text-black">
+                {{ SGTPlanObj.planName }}
+              </div>
+              <hr class="border-2 border-black" />
+              <div>
+                <table class="table bg-white p-3">
+                  <tbody>
+                    <tr class="">
+                      <th scope="row" class="border-0 text-dark-gray">
+                        Monthly Recurring Charge
+                      </th>
+                      <td colspan="3" class="border-0 text-dark-gray"></td>
+                      <td class="align-middle border-0 text-dark-gray text-end fw-bold">
+                        {{ SGTPlanObj.monthlyRecurringCharge }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr />
+                <table class="table bg-white p-3">
+                  <tbody>
+                    <tr class="">
+                      <th scope="row" class="border-0 text-dark-gray">
+                        Total Due Today
+                      </th>
+                      <td colspan="3" class="border-0 text-dark-gray"></td>
+                      <td class="align-middle border-0 text-dark-gray text-end fw-bold">
+                        {{ SGTPlanObj.totalPrice }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn bg-green col-12 mt-3 text-white py-3 text-uppercase shadow-checkout"
+            (click)="selectSGTPlans()">
+            Choose Another Plan
+          </button>
+        </div>
+      </div>
+
+
+      <div class="clearfix"></div>
+
+      <div class="m-auto">
+        <div formGroupName="planInitialInformation" id="agreements">
+          <h5 class="fw-bolder mt-5">AGREEMENTS & SIGNATURES</h5>
+          <p>Agreements</p>
+
+          <div class="membership-plan-agreement-check position-relative form-check" *ngIf="membershipPlanObj">
+            <div
+              (click)="checkAgreementIsReadable(enableMembershipAgreementContractChecked, agreementContractObj.memberShipTypeAgreement)">
+              <span class="cover d-block position-absolute border border-1" id="Membership"
+                [ngClass]="{ 'is-cover-checkbox-invalid': submitted && form.planInitialInformation.controls.isMembershipAgreementContractChecked.errors, 
+              'is-cover-checkbox-valid': !form.planInitialInformation.controls.isMembershipAgreementContractChecked.errors }">
+              </span>
+
+              <input class="form-check-input shadow-none" type="checkbox" id="membershipAgreement" tabindex="37"
+                formControlName="isMembershipAgreementContractChecked"
+                [ngClass]="{ 'is-invalid': submitted && form.planInitialInformation.controls.isMembershipAgreementContractChecked.errors }"
+                #myMembershipAgreementContractRef>
+            </div>
+            <label class="form-check-label  text-div-color"
+              [ngClass]="{ 'text-danger': submitted && form.planInitialInformation.controls.isMembershipAgreementContractChecked.errors }">
+
+              <label for="membershipAgreement">I have read the </label>
+
+              <a class="cursor-pointer text-green agreement-term-authorization text-relish text-decoration-none"
+                (click)="saveTemporaryData(agreementContractObj.memberShipTypeAgreement,
+              agreementContractContent,
+              signPad,  
+              signPadInitial)">
+                Membership Agreement
+              </a>
+
+              <label for="membershipAgreement">and understand a yearly fee of
+                <span class="text-relish">{{membershipPlanObj.clubFeeTotalAmount}}</span>
+                will be billed in 30 days of start
+                date.
+              </label>
+
+            </label>
+          </div>
+
+          <div class="pt-plan-agreement-check" *ngIf="membershipPTPlanObj">
+            <div class="position-relative form-check">
+              <div
+                (click)="checkAgreementIsReadable(enablePTAgreementContractChecked, agreementContractObj.ptTypeAgreement)">
+                <span class="cover d-block position-absolute border border-1" id="PT"
+                  [ngClass]="{ 'is-cover-checkbox-invalid': submitted && form.planInitialInformation.controls.isPTAgreementContractChecked.errors, 
+                'is-cover-checkbox-valid': !form.planInitialInformation.controls.isPTAgreementContractChecked.errors }">
+                </span>
+
+                <input class="form-check-input shadow-none SelectPTAgreement" type="checkbox" id="ptAgreement"
+                  formControlName="isPTAgreementContractChecked" tabindex="38"
+                  [ngClass]="{ 'is-invalid': submitted && form.planInitialInformation.controls.isPTAgreementContractChecked.errors }"
+                  #myPTAgreementContractRef>
+              </div>
+
+              <label class="form-check-label  text-div-color"
+                [ngClass]="{ 'text-danger': submitted && form.planInitialInformation.controls.isPTAgreementContractChecked.errors }">
+
+                <label for="ptAgreement">I have read the</label>
+
+                <a class="text-green cursor-pointer agreement-term-authorization text-relish text-decoration-none"
+                  (click)="saveTemporaryData(agreementContractObj.ptTypeAgreement,
+              agreementContractContent,
+              signPad,
+              signPadInitial)">
+                  PT Agreement.
+                </a>
+              </label>
+            </div>
+          </div>
+
+          <div class="term-check" *ngIf="SourceName != this.commonService.commonTypeObj.member.personalTrainingType">
+            <div class="form-check">
+              <input class="form-check-input shadow-none" type="checkbox" id="termAgreement"
+                formControlName="isTermsConditionChecked" tabindex="39"
+                [ngClass]="{ 'is-invalid': submitted && form.planInitialInformation.controls.isTermsConditionChecked.errors }"
+                #myermsConditionRef>
+              <label class="form-check-label  text-div-color" for="termAgreement">
+                I agree to the YouFit Gyms member
+                <a class="cursor-pointer agreement-term-authorization text-relish text-decoration-none"
+                  data-toggle="modal" data-target="#AuthorizationTerms" data-keyboard="true"
+                  (click)="openTermsConditionsContent(termsConditionsContent)">
+                  Terms & Conditions.
+                </a>
+              </label>
+            </div>
+          </div>
+
+          <div class="authorization-check">
+            <div class="form-check">
+              <input class="form-check-input shadow-none" type="checkbox" id="authorizationAgreement"
+                formControlName="isAuthorizationTermsChecked" tabindex="40"
+                [ngClass]="{ 'is-invalid': submitted && form.planInitialInformation.controls.isAuthorizationTermsChecked.errors }"
+                #myuthorizationTermsRef>
+              <label class="form-check-label text-div-color" for="authorizationAgreement">
+                I have read the
+                <a class="cursor-pointer agreement-term-authorization text-relish text-decoration-none"
+                  (click)="openAuthorizationTermsContent(authorizationTermsContent)">
+                  Authorization Terms
+                </a>
+                and give consent to store my credit card information for
+                this agreement.
+              </label>
+            </div>
+          </div>
+
+          <div class="notice-check" *ngIf="membershipPTPlanObj && membershipPTPlanObj.ptPlanNameType != 'Pay in Full'">
+            <div class="form-check">
+              <input class="form-check-input shadow-none SelectNotice" type="checkbox" id="noticeAgreement"
+                formControlName="isThirtyDayNoticeChecked" tabindex="41"
+                [ngClass]="{ 'is-invalid': submitted && form.planInitialInformation.controls.isThirtyDayNoticeChecked.errors }"
+                #myThirtyDayNoticeRef>
+              <label class="form-check-label text-div-color" for="noticeAgreement">
+                I understand a 30-day notice is required to cancel.
+              </label>
+            </div>
+          </div>
+
+          <div class="SGT-check" *ngIf="SGTPlanObj && SGTPlanObj.planName.includes('SGT Addon')">
+            <div class="form-check">
+              <label class="form-check-label text-div-color">
+                By signing, I acknowledge I have read the
+                <a class="text-green cursor-pointer agreement-term-authorization text-relish text-decoration-none"
+                  (click)="saveTemporaryData(agreementContractObj.sgtTypeAgreement
+              ,agreementContractContent,signPad,signPadInitial)">
+                  Small Group Training Agreement.
+                </a>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+          <div class="mt-4 col-lg-12 col-md-12 col-sm-12 col-sm-12">
+            <div class="fs-5 mb-1">E-Signature</div>
+            <div class="d-flex flex-column align-items-center signaturepadheightwidth">
+              <canvas id="signature-pad" accept="accept" clear="clear" width="{{width}}" height="250"
+                class="col-12 height rounded-1 border border-dark bg-white" #signPadCanvas></canvas>
+            </div>
+          </div>
+          <div class="mt-4 col-lg-12 col-md-12 col-sm-12 col-sm-12">
+            <div class="fs-5">Initials</div>
+            <div class="d-flex flex-column align-items-center signaturepadheightwidth">
+              <canvas id="inititalsignature" accept="initialAccept" clear="clear" width="{{width}}" height="200"
+                class="col-12 initial-height rounded-1 border border-dark bg-white" #signPadInitialCanvas></canvas>
+            </div>
+          </div>
+        </div>
+        <label style="margin-top: 18px;">
+          *By accepting, I consent to receive calls, emails, and texts from Youfit,
+          including information concerning my membership, special offers from Youfit, and advertising and telemarketing
+          messages.
+          Calls and messages may be sent to me through an automatic telephone dialing system or an artificial or
+          prerecorded voice.
+          Signing this consent is NOT a condition of membership or a condition of purchasing any property, goods, or
+          services from
+          Youfit.
+          <a class="cursor-pointer agreement-term-authorization text-relish text-decoration-none" target="_blank"
+            href={{PrivacyPolicy}}>
+            Privacy Policy
+          </a>
+        </label>
+        <div class="checkout-btn-div">
+          <button type="button" disabled="{{buttonDisabled}}"
+            class="btn btn-black text-white col-12 mt-3 p-2 fs-5 text-uppercase shadow-checkout" (click)="
+          redirectToCheckOut(InitialCheckOutForm, signPad, signPadInitial)
+        ">
+            Secure Checkout
+          </button>
+        </div>
+      </div>
+
+      <ng-template #prepaidCreditCardContent>
+        <div class="prepaid-CC-div">
+          <div class="modal-header border-0">
+            <button type="button" class="btn-close shadow-none" aria-label="Close"
+              (click)="closePrepaidCCModal()"></button>
+          </div>
+          <div class="modal-body pt-0">
+            <p class="m-0">The credit card number entered is for a prepaid card.</p>
+            <p class="m-0">Please enter a non-prepaid card.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark text-white" (click)="closePrepaidCCModal()">
+              OK
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #authorizationTermsContent>
+        <div class="modal-header border-0 py-3">
+          <button type="button" class="btn-close shadow-none" aria-label="Close"
+            (click)="closeAuthorizationTermsModal()"></button>
+        </div>
+        <div class="modal-body p-2">
+          <h4 class="modal-title text-center fw-bold" id="modal-basic-title">
+            Authorization Terms
+          </h4>
+          <p class="pt-2 px-2 text-justify">
+            By executing this Agreement, You authorize Club and Club’s agents,
+            including its third party payment processing companies ("Club’s Agents"),
+            to store the account or card information provided by You on or in relation
+            to this Agreement and/or Your Club Membership Agreement ("Club
+            Agreement"), as well as any other account or card information provided by
+            You through any means to Club or Club’s Agents (including information
+            provided in person, online or over the phone) for purposes of making any
+            payment in relation to this Agreement and/or Your Club Agreement
+            (hereinafter, "Payment Information"). Club and/or Club’s Agents will use
+            the stored Payment Information to process payment of all dues, fees,
+            taxes, purchases and incidental charges that are due or will become due,
+            including all items on the Payment Schedule, fees identified in Your Club
+            Agreement, membership-related obligations, retail transactions, personal
+            training purchases, group exercise purchases, childcare fees, or other
+            purchases. Club and/or Club’s Agents may also use the stored Payment
+            Information to process payments owed in relation to all subsequent
+            agreements entered between You and Club. The fixed dates or intervals on
+            which transactions will be processed and the transaction amounts
+            (including all associated fees, taxes and charges) and/or a description of
+            how they will be calculated, are more specifically set forth in the
+            Payment Schedule and other terms of Your Club Agreement. If Your Club
+            Agreement will automatically renew at the end of the Term defined therein,
+            the stored Payment Information will be used to process payments owed in
+            relation to the renewal term. This consent to store Payment Information
+            will not expire unless it is expressly revoked. The general cancellation
+            and refund policies provided in Your Club Agreement will apply to this
+            consent. If any changes are made to the terms of this consent, an e-mail
+            notifying you of such changes will be sent to the e-mail address provided
+            by You on the face of Your Club Agreement or, if an e-mail is not
+            provided, notice will be sent to the mailing address provided on Your Club
+            Agreement.
+          </p>
+        </div>
+      </ng-template>
+
+      <ng-template #termsConditionsContent>
+        <div class="modal-header border-0 py-3">
+          <button type="button" class="btn-close shadow-none" aria-label="Close"
+            (click)="closeTermsConditionsModal()"></button>
+        </div>
+        <div class="modal-body p-2 terms-condition-popup" id="terms-condition-popup">
+          <h4 class="modal-title text-center fw-bold" id="modal-basic-title">
+            PREMIUM ACH MEMBERSHIP AGREEMENT
+          </h4>
+          <span [innerHTML]="agreementTerms"></span>
+        </div>
+      </ng-template>
+
+      <ng-template #agreementContractContent let-modal>
+        <div class="modal-header py-2">
+          <h4 class="modal-title text-arugula" id="modal-basic-title">
+            Agreement Contract
+          </h4>
+          <button type="button" class="btn-close shadow-none" aria-label="Close"
+            (click)="closeAgreementContractModal(agreementType)"></button>
+        </div>
+        <div class="modal-body p-2">
+          <iframe [src]="agreementUrl" frameBorder="0" scrolling="auto" height="100%" width="100%">
+          </iframe>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-outline-dark float-end"
+            (click)="closeAgreementContractModal(agreementType)">
+            Close
+          </button>
+        </div>
+      </ng-template>

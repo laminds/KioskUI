@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title text-center">Please see the front desk.</h4>
+  <button type="button" class="btn-close shadow-none m-0" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" [(ngModel)]="passwordClubNumber">
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="row mb-2">
+    <div class="col logout-box">
+      <div class="input-button-box cursor-pointer rfc-button-box text-center" (click)="checkPassword(passwordClubNumber)">
+        <div class="pb-1 rfc-icon">
+          <i class="fa fa-check" aria-hidden="true" data-dismiss="modal"></i>
+        </div>
+        <label class="option-title logout-title" data-dismiss="modal">Proceed</label>
+      </div>
+    </div>
+    <div class="col logout-box">
+      <div class="input-button-box cursor-pointer rfc-button-box text-center" (click)="redirectToMainOptionModule()">
+        <div class="pb-1  rfc-icon">
+          <i class="fa fa-home" aria-hidden="true" data-dismiss="modal"></i>
+        </div>
+        <label class="option-title logout-title" data-dismiss="modal">Home</label>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="search-guest-member-page">
+  <div class="margin-bottom-200 margin-top-200">
+    <h1 class="mt-5 text-white text-center fw-bold">Hi <span class="text-uppercase"> {{memberObj.firstName}} </span></h1>
+    <h4 class="text-center text-white  mt-3">{{amenitiestHeadermessage}}</h4>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
+      <div class="row justify-content-center">
+        <div class="d-flex gap-4 col-12 justify-content-center mt-4">
+          <button type="button" *ngIf="isPickleBall == true" class="btn btn-div bg-green rounded-1 text-white fw-normal shadow-color" (click)="checkMemberEligibleForPickleball(pickleballAccessContent) ">{{ pickleball }}</button>
+          <button type="button" *ngIf="isTotSpot == true" class="btn btn-div bg-green rounded-1 text-white fw-normal shadow-color" (click) = "commonService.setModuleAndRedirectToPerticularSource(commonService.commonTypeObj.member.amenitiesTypeObj.babysittingType)" >{{ babysitting }}</button>
+        </div>
+      </div>
+  </div>
+</div>                                                      
+
+<ng-template #pickleballAccessContent>
+  <div class="modal-header align-items-start gap-1">
+      <p class="m-0">Pickleball facility is only for EMPLOYEE, PREMIUM and PREMIUM+ members.</p>
+      <button type="button" class="btn-close shadow-none" aria-label="Close" (click)="closeModalPopup()"></button>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-success arugula-bgcolor text-white" (click)="closeModalPopup()">Ok</button>
+  </div>
+</ng-template>

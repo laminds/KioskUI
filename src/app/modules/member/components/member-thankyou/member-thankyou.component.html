@@ -1,0 +1,15 @@
+<!-- <div class="upgrade-member-page mt-5" *ngIf="!memberHomeButton && !memberBackButton">
+  <h1 class="margin-top-10 text-white text-center fw-bold">{{thankyouText}}</h1>
+  <h3 class="mt-3 text-white text-center mt-2">{{headingtext}}</h3>
+</div> -->
+
+<div class="upgrade-member-page mt-5">
+  <h1 class="margin-top-10 text-white text-center fw-bold">{{thankyouText}}</h1>
+  <h3 class="mt-3 text-white text-center mt-2">{{headingtext}}</h3>
+  <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+    <button type="button" class="btn btn-success w-100 text-uppercase bg-green text-white shadow-color fs-5" (click)="gotoHome()">
+      Home
+    </button>
+  </div>
+</div>
+

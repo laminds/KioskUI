@@ -1,0 +1,113 @@
+<div class="wrapper margin-bottom-200 margin-top-100" *ngIf="InitialPlanList.length > 0">
+  <div>
+    <h1 class="text-center mb-3 extrabold text-white">{{membership}}</h1>
+    <p class="text-center fs-4 text-white">{{headertext}}</p>
+  </div>
+  <div [ngClass]="{'d-flex gap-3 justify-content-center flex-wrap': PlanTabOrderDetail.length <= 2}">
+    <div class="mb-5  mt-4 "
+      [ngClass]="{'col-lg-8 col-md-10 col-sm-12 col-12': PlanTabOrderDetail.length == 2, 'col-lg-4 col-md-5 col-sm-8 col-10': PlanTabOrderDetail.length == 1}"
+      style="margin-bottom: 5rem !important;">
+      <tabset type="pills" class="nav-fill mt-5 custom-wid fw-bold"
+        [ngClass]="{'nowrap': PlanTabOrderDetail.length > 3}">
+        <tab class="test" index="$index + 1" *ngFor="let tab of PlanTabOrderDetail" [heading]="tab.tabName"
+          [id]="tab.tabOrder" (selectTab)="getMemberPlanType(tab.tabOrder, tab.originalPlanTypeName)">
+        </tab>
+      </tabset>
+    </div>
+  </div>
+  <!-- cards-1 -->
+  <div class="d-flex gap-3 justify-content-center flex-wrap">
+    <div class="plan-content-ui col-sm-12 col-lg-6 shadow-color" *ngFor="let plan of MemberShipPlan; index as i"
+      [ngClass]="{'mx-2 w-plan': MemberShipPlan.length == 2 || MemberShipPlan.length == 1}">
+      <!-- topbanner -->
+      <div *ngIf="plan.bannerText != null"
+        class="topbanner-1 topbanner extrabold fw-bold text-white col-lg-3 col-md-3 col-sm-7 col-9"> <span
+          class="top-heading-banner">{{ plan.bannerText }}</span></div>
+      <!-- top-cardbody -->
+      <div class="top-card-body bg-green justify-content-center p-4">
+        <div class="text-center text-yellow fs-3 fw-bold fr">{{plan.membershipType}}</div>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <div>
+            <div class="text-white d-flex gap-1">
+              <div class="fs6 extrabold mt-4 mt-4x text-shadow fr">$</div>
+              <div class="price-1 extrabold text-shadow">{{plan.planFeesPricisionValue}}</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column justify-content-center mb-4 mb-4x">
+            <div class="text-white extrabold fs-4 text-shadow fr">.{{plan.planFeesScaleValue}}</div>
+            <div *ngIf="plan.FlagBiweekly == false" class="text-white tax text-shadow tax-text">monthly&nbsp;+&nbsp;tax</div>
+            <div *ngIf="plan.FlagBiweekly == true" class="text-white tax text-shadow tax-text">biweekly&nbsp;+&nbsp;tax</div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+          <div class="d-flex text-white " *ngIf="plan.strikeout_field">
+            <span class="slash-ui"></span>
+            <div class="sub-font-size text-white fw-bolder fr">$</div>
+            <div class="fs-5 text-white fw-bolder fr">{{plan.strikeout_field}}</div>
+          </div>
+          <div class="d-flex gap-1">
+            <div class="sub-font-size text-white fw-bolder fr">$</div>
+            <div class="fs-5 text-white fw-bolder fr">{{plan.enrollFeePricisionValue}}</div>
+            <div class="fs-5 text-white fw-bolder fr">Enrollment</div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+          <button type="button" class="btn joint-btn bg-yellow fw-bold fr fs-5"
+            (click)="redirecToPTPlan(plan)">{{joinNowText}} </button>
+        </div>
+      </div>
+      <!-- card-content -->
+      <div class="card-content  plan-benefit-section" id="plan-benefit-section">
+        <div class="d-flex gap-3" *ngFor="let feature of plan.features; index as i">
+          <div>
+            <i class="fa fa-check text-green" aria-hidden="true"></i>
+          </div>
+          <div>
+            <span class="fw-lighter text-14">{{feature.feature}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-4 col-sm-6 col-12 m-auto mt-5" *ngIf="visibleMoreButton && isMoreButton">
+    <button type="button" class="btn bg-green w-100 px-2 py-2 fs-5 text-white border-1 shadow-color"
+      (click)="hideShowMorebtn(hideShowPlanType)">
+      {{morebtn}}
+      <i class="ms-2 fa" aria-hidden="true"
+        [ngClass]="{'fa-arrow-right': MemberShipPlan.length == 2, 'fa-arrow-left': MemberShipPlan.length == 1}"></i>
+    </button>
+  </div>
+</div>
+
+<ng-template #upgradeModelContent let-c="close" let-d="dismiss">
+  <div>
+    <div class="modal-header">
+      <label class="text-center mx-4 modal-font-size">
+        Do you want to upgrade <span class="premium"> {{PlanName}} </span> plan ?
+      </label>
+      <button type="button" class="btn-close mb-5 shadow-none" aria-label="Close"
+        (click)="cancelUpgradeModal()"></button>
+    </div>
+    <div class="modal-footer" id="upgrademodel">
+      <div class="row">
+        <div class="col">
+          <div class="input-button-box text-center" (click)="upgradeMembership(PlanName)">
+            <div class="pb-1 icon-size">
+              <i class="fa fa-check  text-success cursor-pointer" aria-hidden="true"></i>
+            </div>
+            <label class="option-title yes-no-label" (click)="upgradeMembership(PlanName)">Yes</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-button-box text-center" (click)="cancelUpgradeModal()">
+            <div class=" icon-size">
+              <i class="fa fa-times text-danger cursor-pointer" aria-hidden="true" data-dismiss="modal"></i>
+            </div>
+            <label class="option-title yes-no-label" data-dismiss="modal" (click)="cancelUpgradeModal()">No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

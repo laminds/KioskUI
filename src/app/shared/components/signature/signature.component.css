@@ -1,0 +1,60 @@
+.modal-dialog {
+    width: 570px !important;
+}
+
+.dropdown-btn-menu {
+    height: 200px;
+}
+
+.signature-pad{
+    border-color: black;
+    background-color: white;
+}
+
+@media(max-width:569px) {
+    .modal-dialog {
+        width: 399px !important;
+    }
+}
+
+@media(max-width:425px) {
+    .modal-dialog {
+        width: auto !important;
+    }
+}
+
+.checkbox-label-group {
+    text-indent: -27px;
+    padding-left: 27px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+.checkbox {
+    vertical-align: middle;
+    width: 16px;
+    display: unset;
+    height: 20px;
+    margin-right: 5px !important;
+}
+.continue-btn-div button:disabled{
+    opacity: 0.5;
+    background-color: black;
+    border: none;
+  }
+.shadow-signature {
+    box-shadow: 2px 4px 4px rgb(110 110 110 / 60%) !important;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .signaturepadheightwidth {
+        max-width: 889px;
+        max-height: 270px
+    }
+}
+
+@media only screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    .signaturepadheightwidth {
+        max-width: 889px;
+        max-height: 270px
+    }
+}

@@ -1,0 +1,134 @@
+<div class="update-personal-div margin-top-x margin-bottom-200">
+  <h1 class="text-center fw-bold"> {{headermessage}} </h1>
+  <h4 class="text-center fw-bold pt-2 mb-5"> {{subheaderText}} </h4>
+
+  <div class="container m-auto">
+    <h4 class="text-uppercase">{{PItext}}</h4>
+    <form [formGroup]="updatePersonalInfoForm" class="bg-form">
+     
+      <div class="row form-group">
+        <div class="col-lg-6 mb-3">
+          <input type="text" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="firstName"
+            placeholder="firstname" tabindex="1"
+            [ngClass]="{ 'is-invalid': submitted && form['firstName'].errors }" />
+          <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['required']">
+            <sup>*</sup>Please enter first name.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['maxlength']">
+            <sup>*</sup>First name will not be greater than 15 characters.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && form['firstName'].errors?.['pattern']">
+            <sup>*</sup>First name should allow only alphanumeric characters, apostrophes('), hyphens(-), or
+            spaces and must begin with an alpha character.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <input type="text" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="lastName"
+            placeholder="lastname" tabindex="2" [ngClass]="{ 'is-invalid': submitted && form['lastName'].errors }" />
+          <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['required']">
+            <sup>*</sup>Please enter last name.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['maxlength']">
+            <sup>*</sup>Last name will not be greater than 15 characters.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && form['lastName'].errors?.['pattern']">
+            <sup>*</sup>Last name should allow only alphanumeric characters, apostrophes('), hyphens(-), or
+            spaces and must begin with an alpha character.
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group ">
+        <div class="col-lg-6 mb-3">
+          <input type="email" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="email"
+            placeholder="josh@google.com" tabindex="3"
+            [ngClass]="{ 'is-invalid': submitted && form['email'].errors }" />
+          <div class="invalid-feedback"
+            *ngIf="(submitted && form['email'].errors?.['required']) || (submitted && form['email'].errors?.['pattern'])">
+            <sup>*</sup>Please enter valid email.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <input type="tel" class="form-control rounded-2 border border-dark shadow-checkout" formControlName="phoneNumber"
+            placeholder="(123)-456-7890" tabindex="4" mask="(000) 000-0000"
+            [ngClass]="{ 'is-invalid': submitted && form['phoneNumber'].errors }" />
+          <div class="invalid-feedback" *ngIf="submitted && form['phoneNumber'].errors?.['required']">
+            <sup>*</sup>Please enter correct phone number.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && form['phoneNumber'].errors?.['pattern']">
+            <sup>*</sup>Please enter 10 digits for your phone number (i.e. (987) 654-3210).
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group ">
+        <div class="col-lg-6 mb-3">
+          <input type="text" class="datepicker-text form-control rounded-1 p-2 border border-dark shadow-checkout"
+            placeholder="Date of Birth" formControlName="dob" [maxDate]="today"  #datepickerMDY="bsDatepicker" bsDatepicker [bsConfig]="{ 
+                  showClearButton: true, 
+                  clearPosition: 'right', 
+                  showTodayButton: true, 
+                  todayPosition: 'left', 
+                  dateInputFormat: 'MM/DD/YYYY', 
+                  adaptivePosition: true, 
+                  isAnimated: true, 
+                  startView: 'year' 
+                }" placement="bottom" tabindex="5" 
+            [ngClass]="{ 'is-invalid': submitted && form['dob'].errors }">
+          <div class="invalid-feedback" *ngIf="submitted && form['dob'].errors?.['required']">
+            <sup>*</sup>Please enter/select birthdate.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <div class="input-group mb-3">
+            <button type="button"
+              class=" border border-dark dropdown-btn dropdown-toggle dropdown-toggle-split w-100 text-start p-2 rounded-1  radious-2 border border-1 form-control shadow-checkout"
+              data-bs-toggle="dropdown" aria-expanded="false" tabindex="6"
+              [ngClass]="{ 'is-dropdown-invalid is-invalid': submitted && form.gender.errors }">
+              <span *ngIf="!updatePersonalInfoForm.get('gender')!.value else genderName"
+                class="dropdown-placeholder-color"> Gender </span>
+              <ng-template #genderName>{{ updatePersonalInfoForm.get('gender')!.value
+                }}</ng-template>
+            </button>
+            <ul class="dropdown-menu w-100 overflow-auto">
+              <li class="dropdown-item cursor-pointer py-2" *ngFor="let list of genderList; index as i;"
+                [ngClass]="{ 'active': i == activeIndex }" (click)="activeSelectedGenderOption(list, i)">
+                {{ list }}
+              </li>
+            </ul>
+            <!-- error block -->
+            <div class="invalid-feedback" *ngIf="submitted && form.gender.errors?.['required']">
+              <sup>*</sup>Please select gender.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+        <div class="form-check">
+          <input class="form-check-input shadow-none border border-dark" type="checkbox" id="checkbox" formControlName="isKeepMeUpdate"
+            [ngClass]="{ 'is-invalid': submitted && form['isKeepMeUpdate'].errors }">
+          <label class="" for="checkbox">
+            By checking this box, I consent to receive calls, emails, and texts from Youfit, including information
+            concerning my membership, special offers from Youfit, and advertising and telemarketing messages. Calls
+            and messages may be sent to me through an automatic telephone dialing system or an artificial or
+            prerecorded voice. Signing this consent is NOT a condition of membership or a condition of purchasing
+            any property, goods, or services from Youfit.
+          </label>
+          <!-- error block -->
+          <div class="invalid-feedback" *ngIf="submitted && form['isKeepMeUpdate'].errors?.['required']">
+            <sup>*</sup>Please Select the Checkbox.
+          </div>
+        </div>
+  
+
+      <div class="col-lg-2 col-md-4 col-sm-6 col-12 m-auto mt-5">
+        <button type="button" (click)="updatePersonalInfoDetails(updatePersonalInfoForm)"
+          class="btn bg-green w-100 text-white  text-uppercase p-2 fs-5 shadow-checkout">
+          {{submitbtn}}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
